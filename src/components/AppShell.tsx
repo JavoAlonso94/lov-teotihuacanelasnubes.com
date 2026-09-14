@@ -34,7 +34,13 @@ export function AppShell({ children }: { children: ReactNode }) {
   const { theme, toggle } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const path = useRouterState({ select: (s) => s.location.pathname });
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setLoading(false), 1150);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -63,6 +69,10 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <div className={`tnn-preloader ${loading ? "" : "is-hidden"}`} aria-hidden={!loading}>
+        <img src={logo.url} alt="" />
+        <div className="tnn-loader-line"><span /></div>
+      </div>
       <nav className={`tnn-nav ${scrolled ? "is-scrolled" : ""}`}>
         <div className="container tnn-app d-flex align-items-center justify-content-between py-2">
           <Link to="/" className="navbar-brand d-flex align-items-center gap-2 m-0">
@@ -209,6 +219,18 @@ export function AppShell({ children }: { children: ReactNode }) {
       >
         <i className="fa-brands fa-whatsapp" />
       </a>
+
+      <div className="tnn-social-float d-none d-lg-flex" aria-label="Redes sociales">
+        <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+          <i className="fa-brands fa-facebook-f" />
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <i className="fa-brands fa-instagram" />
+        </a>
+        <a href="https://tiktok.com" target="_blank" rel="noreferrer" aria-label="TikTok">
+          <i className="fa-brands fa-tiktok" />
+        </a>
+      </div>
 
       <nav className="tnn-tabbar d-lg-none">
         {NAV.map((n) => (
