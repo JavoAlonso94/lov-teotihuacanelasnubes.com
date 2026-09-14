@@ -53,6 +53,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     setMenuOpen(false);
     let cancelled = false;
     (async () => {
+      await import("bootstrap/dist/js/bootstrap.bundle.min.js");
       const AOS = (await import("aos")).default;
       if (cancelled) return;
       AOS.init({ duration: 750, easing: "ease-out-cubic", once: true, offset: 60 });
@@ -180,6 +181,9 @@ export function AppShell({ children }: { children: ReactNode }) {
                   {n.label}
                 </Link>
               ))}
+              <Link to="/terminos" className="d-block mb-2 text-decoration-none tnn-muted">
+                Términos y condiciones
+              </Link>
             </div>
             <div className="col-6 col-lg-5">
               <h5 className="mb-3">Contacto</h5>

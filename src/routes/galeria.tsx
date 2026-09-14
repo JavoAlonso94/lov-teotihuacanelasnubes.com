@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { galleryImages } from "@/lib/media";
+import { galleryImages, media } from "@/lib/media";
 import { tnnSwal } from "@/lib/tnn";
 
 export const Route = createFileRoute("/galeria")({
@@ -65,6 +65,29 @@ function Galeria() {
       </section>
 
       <section className="tnn-section" style={{ background: "var(--tnn-surface-2)" }}>
+        <div className="container tnn-app">
+          <div className="text-center mb-5" data-aos="fade-up">
+            <p className="tnn-eyebrow">En movimiento</p>
+            <h2 className="display-6">Galería de videos</h2>
+          </div>
+          <div className="row g-4 justify-content-center">
+            {[
+              [media.launchVideo, "El despegue"],
+              [media.heroVideo, "Sobre la Ciudad de los Dioses"],
+              [media.sunriseVideo, "Amanecer entre globos"],
+            ].map(([src, label], i) => (
+              <div className="col-10 col-sm-6 col-lg-4" key={label} data-aos="zoom-in" data-aos-delay={i * 100}>
+                <div className="tnn-video-card">
+                  <video src={src} controls muted playsInline preload="metadata" poster={galleryImages[i]?.src} />
+                  <span className="tnn-video-label"><i className="fa-solid fa-play-circle me-2" />{label}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="tnn-section">
         <div className="container tnn-app">
           <h2 className="display-6 text-center mb-5" data-aos="fade-up">
             Lo que dicen nuestros viajeros
