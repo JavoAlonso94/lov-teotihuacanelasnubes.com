@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as NosotrosRouteImport } from './routes/nosotros'
 import { Route as TerminosRouteImport } from './routes/terminos'
@@ -18,6 +19,11 @@ import { Route as VuelosRouteImport } from './routes/vuelos'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GaleriaRoute = GaleriaRouteImport.update({
@@ -43,6 +49,7 @@ const VuelosRoute = VuelosRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
   '/terminos': typeof TerminosRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
   '/terminos': typeof TerminosRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
   '/terminos': typeof TerminosRoute
@@ -65,14 +74,23 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/galeria' | '/nosotros' | '/terminos' | '/vuelos'
+  fullPaths:
+    '/' | '/contacto' | '/galeria' | '/nosotros' | '/terminos' | '/vuelos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/galeria' | '/nosotros' | '/terminos' | '/vuelos'
-  id: '__root__' | '/' | '/galeria' | '/nosotros' | '/terminos' | '/vuelos'
+  to: '/' | '/contacto' | '/galeria' | '/nosotros' | '/terminos' | '/vuelos'
+  id:
+    | '__root__'
+    | '/'
+    | '/contacto'
+    | '/galeria'
+    | '/nosotros'
+    | '/terminos'
+    | '/vuelos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactoRoute: typeof ContactoRoute
   GaleriaRoute: typeof GaleriaRoute
   NosotrosRoute: typeof NosotrosRoute
   TerminosRoute: typeof TerminosRoute
@@ -86,6 +104,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/galeria': {
@@ -121,6 +146,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactoRoute: ContactoRoute,
   GaleriaRoute: GaleriaRoute,
   NosotrosRoute: NosotrosRoute,
   TerminosRoute: TerminosRoute,
