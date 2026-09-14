@@ -7,6 +7,8 @@ import proposal from "@/assets/tnn-proposal.jpg.asset.json";
 import celebration from "@/assets/tnn-celebration.jpg.asset.json";
 import crew from "@/assets/tnn-crew.jpg.asset.json";
 import logo from "@/assets/logo-tnn.png.asset.json";
+import launchVideo from "@/assets/despegue.mp4.asset.json";
+import sunriseVideo from "@/assets/amanecer.mp4.asset.json";
 
 export const media = {
   heroVideo: heroVideo.url,
@@ -18,6 +20,8 @@ export const media = {
   proposal: proposal.url,
   celebration: celebration.url,
   crew: crew.url,
+  launchVideo: launchVideo.url,
+  sunriseVideo: sunriseVideo.url,
 };
 
 export const flightImages: Record<string, string> = {
