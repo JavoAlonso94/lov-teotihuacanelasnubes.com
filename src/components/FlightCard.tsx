@@ -28,28 +28,30 @@ export function FlightCard({ flight, image, delay = 0 }: { flight: Flight; image
   return (
     <div className="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay={delay}>
       <article className="tnn-card d-flex flex-column">
-        <div className="tnn-card__media">
-          <img src={image} alt={flight.name} loading="lazy" />
+        <div className={`tnn-card__media tnn-card__media--${flight.id}`}>
+          <img src={image} alt={`Experiencia ${flight.name} en Teotihuacán`} loading="lazy" />
           {flight.badge && <span className="tnn-badge">{flight.badge}</span>}
+          <span className="tnn-card__image-icon" aria-hidden="true">
+            <i className={flight.icon} />
+          </span>
         </div>
-        <div className="p-4 d-flex flex-column flex-grow-1">
-          <div className="d-flex align-items-center gap-3 mb-2">
-            <span className="tnn-ico sun" style={{ width: 44, height: 44, fontSize: "1.05rem" }}>
-              <i className={flight.icon} />
-            </span>
-            <h3 className="h5 mb-0">{flight.name}</h3>
-          </div>
-          <p className="tnn-muted small mb-2">{flight.tagline}</p>
-          <p className="mb-3 small">{flight.description}</p>
-          <div className="mt-auto d-flex align-items-center justify-content-between gap-2">
+        <div className="tnn-card__body d-flex flex-column flex-grow-1">
+          <div className="tnn-card__heading">
             <div>
-              <div className="tnn-price">{flight.price}</div>
-              <div className="small tnn-muted">{flight.note}</div>
+              <h3 className="h5 mb-1">{flight.name}</h3>
+              <p className="tnn-muted small mb-0">{flight.tagline}</p>
             </div>
-            <button className="btn btn-sky btn-sm" onClick={() => reservar(flight)}>
-              Reservar
-            </button>
+            <div className="tnn-card__price text-end">
+              <span>Desde</span>
+              <div className="tnn-price">{flight.price}</div>
+              <small className="tnn-muted">{flight.note}</small>
+            </div>
           </div>
+          <p className="tnn-card__description">{flight.description}</p>
+          <button className="btn btn-sky w-100 mt-auto" onClick={() => reservar(flight)}>
+            Reservar ahora
+            <i className="fa-solid fa-arrow-right ms-2" aria-hidden="true" />
+          </button>
         </div>
       </article>
     </div>
