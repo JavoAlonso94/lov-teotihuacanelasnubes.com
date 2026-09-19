@@ -8,6 +8,8 @@ export const Route = createFileRoute("/terminos")({
       { name: "description", content: "Condiciones de reservación, seguridad, cambios y cancelaciones para vuelos en globo." },
       { property: "og:title", content: "Términos y condiciones | Teotihuacán en las nubes" },
       { property: "og:description", content: "Información importante para reservar tu experiencia de vuelo." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });

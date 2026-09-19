@@ -53,7 +53,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     setMenuOpen(false);
     let cancelled = false;
     (async () => {
-      await import("bootstrap/dist/js/bootstrap.bundle.min.js");
+      await import("bootstrap");
       const AOS = (await import("aos")).default;
       if (cancelled) return;
       AOS.init({ duration: 750, easing: "ease-out-cubic", once: true, offset: 60 });

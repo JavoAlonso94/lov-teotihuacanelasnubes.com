@@ -10,6 +10,8 @@ export const Route = createFileRoute("/contacto")({
     { name: "description", content: "Consulta disponibilidad y reserva tu vuelo en globo sobre Teotihuacán por WhatsApp." },
     { property: "og:title", content: "Reserva tu vuelo | Teotihuacán en las nubes" },
     { property: "og:description", content: "Nuestros asesores te ayudarán a elegir la experiencia ideal." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ]}),
 });
 

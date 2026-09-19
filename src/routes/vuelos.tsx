@@ -18,6 +18,8 @@ export const Route = createFileRoute("/vuelos")({
         property: "og:description",
         content: "Elige la mejor opción para ti: 6 paquetes de vuelo en globo aerostático.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
