@@ -18,6 +18,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Descubre la magia de volar en globo sobre la Ciudad de los Dioses.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
@@ -125,9 +127,11 @@ function Index() {
             </p>
           </div>
           <div className="row g-4">
-            {flights.slice(0, 3).map((f, i) => (
-              <FlightCard key={f.id} flight={f} image={flightImages[f.id]} delay={i * 120} />
-            ))}
+            {flights.slice(0, 3).map((f, i) => {
+              const image = flightImages[f.id];
+              if (!image) return null;
+              return <FlightCard key={f.id} flight={f} image={image} delay={i * 120} />;
+            })}
           </div>
           <div className="text-center mt-5" data-aos="fade-up">
             <Link className="btn btn-outline-tnn btn-lg" to="/vuelos">

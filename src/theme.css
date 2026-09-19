@@ -337,7 +337,7 @@ h5,
 .tnn-card {
   background: var(--tnn-surface);
   border: 1px solid var(--tnn-line);
-  border-radius: 1.75rem;
+  border-radius: 1.25rem;
   box-shadow: var(--tnn-shadow-sm);
   overflow: hidden;
   height: 100%;
@@ -348,7 +348,7 @@ h5,
     border-color 0.45s ease;
 }
 .tnn-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: var(--tnn-shadow);
   border-color: rgba(41, 171, 226, 0.55);
 }
@@ -356,16 +356,64 @@ h5,
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  background: var(--tnn-surface-2);
 }
 .tnn-card__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 45%;
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .tnn-card:hover .tnn-card__media img {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
+.tnn-card__media--compartido img { object-position: center 40%; }
+.tnn-card__media--todo-incluido img { object-position: center 48%; }
+.tnn-card__image-icon {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 2.55rem;
+  height: 2.55rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(4, 18, 30, 0.48);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.75);
+}
+.tnn-card__body { padding: 1.5rem; }
+.tnn-card__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 1rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid var(--tnn-line);
+}
+.tnn-card__heading h3 { line-height: 1.2; }
+.tnn-card__price { min-width: 7.25rem; }
+.tnn-card__price > span {
+  display: block;
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tnn-muted);
+}
+.tnn-card__price .tnn-price { font-size: 1.22rem; line-height: 1.2; white-space: nowrap; }
+.tnn-card__price small { display: block; font-size: 0.7rem; }
+.tnn-card__description {
+  margin: 1.15rem 0 1.4rem;
+  color: var(--tnn-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.tnn-card__body .btn { border-radius: 0.8rem; }
 .tnn-badge {
   position: absolute;
   top: 0.9rem;
@@ -377,7 +425,7 @@ h5,
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.32rem 0.8rem;
-  border-radius: 999px;
+  border-radius: 0.5rem;
   box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.6);
 }
 .tnn-price {
@@ -385,6 +433,14 @@ h5,
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--tnn-sky-600);
+}
+
+@media (max-width: 575.98px) {
+  .tnn-card { border-radius: 1rem; }
+  .tnn-card__body { padding: 1.25rem; }
+  .tnn-card__heading { grid-template-columns: minmax(0, 1fr) 6.8rem; gap: 0.75rem; }
+  .tnn-card__price { min-width: 0; }
+  .tnn-card__price .tnn-price { font-size: 1.05rem; }
 }
 [data-bs-theme="dark"] .tnn-price {
   color: var(--tnn-sun);

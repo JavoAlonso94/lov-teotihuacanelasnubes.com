@@ -16,6 +16,8 @@ export const Route = createFileRoute("/nosotros")({
         property: "og:description",
         content: "Calidad, calidez humana y experiencias 100% seguras en globo aerostático.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });

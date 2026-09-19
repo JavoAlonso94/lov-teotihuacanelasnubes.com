@@ -14,6 +14,8 @@ export const Route = createFileRoute("/galeria")({
       },
       { property: "og:title", content: "Galería de vuelos en globo en Teotihuacán" },
       { property: "og:description", content: "Mira cómo se vive un amanecer en las nubes." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
