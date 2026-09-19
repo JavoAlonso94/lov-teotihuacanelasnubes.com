@@ -125,9 +125,11 @@ function Index() {
             </p>
           </div>
           <div className="row g-4">
-            {flights.slice(0, 3).map((f, i) => (
-              <FlightCard key={f.id} flight={f} image={flightImages[f.id]} delay={i * 120} />
-            ))}
+            {flights.slice(0, 3).map((f, i) => {
+              const image = flightImages[f.id];
+              if (!image) return null;
+              return <FlightCard key={f.id} flight={f} image={image} delay={i * 120} />;
+            })}
           </div>
           <div className="text-center mt-5" data-aos="fade-up">
             <Link className="btn btn-outline-tnn btn-lg" to="/vuelos">

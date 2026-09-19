@@ -46,9 +46,11 @@ function Vuelos() {
       <section className="tnn-section">
         <div className="container tnn-app">
           <div className="row g-4">
-            {flights.map((f, i) => (
-              <FlightCard key={f.id} flight={f} image={flightImages[f.id]} delay={(i % 3) * 120} />
-            ))}
+            {flights.map((f, i) => {
+              const image = flightImages[f.id];
+              if (!image) return null;
+              return <FlightCard key={f.id} flight={f} image={image} delay={(i % 3) * 120} />;
+            })}
           </div>
           <p className="text-center tnn-muted mt-4 mb-0">
             <i className="fa-solid fa-child me-2" />
