@@ -10,6 +10,13 @@ import realFlight5 from "@/assets/vuelo-real-5.jpg.asset.json";
 import realFlight6 from "@/assets/vuelo-real-6.jpg.asset.json";
 import realFlight7 from "@/assets/vuelo-real-7.jpg.asset.json";
 import realFlight8 from "@/assets/vuelo-real-8.jpg.asset.json";
+import galleryReal1 from "@/assets/galeria-real-1.jpg.asset.json";
+import galleryReal2 from "@/assets/galeria-real-2.jpg.asset.json";
+import galleryReal3 from "@/assets/galeria-real-3.jpg.asset.json";
+import galleryReal4 from "@/assets/galeria-real-4.jpg.asset.json";
+import galleryReal5 from "@/assets/galeria-real-5.jpg.asset.json";
+import galleryReal6 from "@/assets/galeria-real-6.jpg.asset.json";
+import galleryReal7 from "@/assets/galeria-real-7.jpg.asset.json";
 
 export const media = {
   heroVideo: heroVideo.url,
@@ -50,4 +57,11 @@ export const galleryImages = [
   { src: realFlight2.url, alt: "Pareja antes de despegar en Teotihuacán" },
   { src: realFlight4.url, alt: "Viajeros junto a globos de colores al amanecer" },
   { src: realFlight7.url, alt: "Pareja después de su experiencia de vuelo" },
+  { src: galleryReal1.url, alt: "Familia celebrando frente a los globos aerostáticos" },
+  { src: galleryReal2.url, alt: "Grupo de amigos después de volar sobre Teotihuacán" },
+  { src: galleryReal3.url, alt: "Familia saludando desde la canastilla del globo" },
+  { src: galleryReal4.url, alt: "Familia reunida frente a un globo de colores" },
+  { src: galleryReal5.url, alt: "Viajeros saludando durante su vuelo en globo" },
+  { src: galleryReal6.url, alt: "Grupo de amigos divirtiéndose junto al globo" },
+  { src: galleryReal7.url, alt: "Familia disfrutando su experiencia entre globos" },
 ];
