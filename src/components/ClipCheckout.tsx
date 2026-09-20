@@ -62,6 +62,7 @@ export function ClipCheckout() {
     event.preventDefault();
     if (!card.current || processing) return;
     const data = new FormData(event.currentTarget);
+    if (data.get("terms") !== "on") return;
     setProcessing(true);
     try {
       const token = await card.current.cardToken();
@@ -72,7 +73,7 @@ export function ClipCheckout() {
         customerName: String(data.get("customerName") ?? ""),
         customerEmail: String(data.get("customerEmail") ?? ""),
         customerPhone: String(data.get("customerPhone") ?? ""),
-        acceptedTerms: data.get("terms") === "on" as true,
+        acceptedTerms: true,
         cardToken: token.id,
         idempotencyKey: crypto.randomUUID(),
       } });
