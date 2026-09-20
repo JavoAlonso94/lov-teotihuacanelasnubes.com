@@ -23,15 +23,15 @@
   --bs-body-font-family: "Nunito", system-ui, sans-serif;
   --bs-body-font-size: 1.02rem;
   --bs-body-color: #16394f;
-  --bs-body-bg: #f6fbff;
+  --bs-body-bg: #eef2f4;
   --bs-border-radius: 1rem;
   --bs-border-radius-lg: 1.5rem;
   --bs-border-radius-xl: 2rem;
   --bs-link-color: var(--tnn-sky-600);
   --bs-link-hover-color: var(--tnn-deep);
 
-  --tnn-surface: #ffffff;
-  --tnn-surface-2: #ecf7ff;
+  --tnn-surface: #f8fafb;
+  --tnn-surface-2: #e4eaed;
   --tnn-ink: #16394f;
   --tnn-muted: #5c7d92;
   --tnn-line: rgba(10, 61, 98, 0.12);
@@ -39,7 +39,7 @@
   --tnn-shadow-sm: 0 10px 24px -16px rgba(10, 61, 98, 0.55);
   --tnn-grad-sky: linear-gradient(135deg, #29abe2 0%, #6fd0f7 55%, #cceeff 100%);
   --tnn-grad-sun: linear-gradient(135deg, #ffc20e 0%, #f7941e 55%, #ef5b25 100%);
-  --tnn-glass: rgba(255, 255, 255, 0.72);
+  --tnn-glass: rgba(238, 242, 244, 0.84);
 }
 
 [data-bs-theme="dark"] {
@@ -131,6 +131,24 @@ h5,
   filter: drop-shadow(0 6px 12px rgba(10, 61, 98, 0.35));
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+.tnn-brand-name {
+  display: inline-block;
+  max-width: 16rem;
+  overflow: hidden;
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(.9rem, 1.5vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.05;
+  background: linear-gradient(100deg, var(--tnn-deep), var(--tnn-sky-600) 45%, var(--tnn-flame) 75%, var(--tnn-ember));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+[data-bs-theme="dark"] .tnn-brand-name {
+  background: linear-gradient(100deg, var(--tnn-sky-100), var(--tnn-sky-300) 45%, var(--tnn-sun) 75%, var(--tnn-flame));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
 .tnn-nav .navbar-brand:hover img {
   transform: translateY(-3px) scale(1.04);
 }
@@ -200,12 +218,36 @@ h5,
 .tnn-offcanvas {
   background: var(--tnn-surface);
   color: var(--tnn-ink);
-  border-left: 1px solid var(--tnn-line);
+  overflow-y: auto;
 }
 .tnn-offcanvas .tnn-link {
-  font-size: 1.25rem;
+  font-size: clamp(1.35rem, 6vw, 2rem);
   display: block;
-  padding: 0.85rem 1rem !important;
+  padding: 0.8rem 0 !important;
+  border-bottom: 1px solid var(--tnn-line);
+  border-radius: 0;
+}
+.tnn-offcanvas__header {
+  min-height: 4.5rem;
+  border-bottom: 1px solid var(--tnn-line);
+}
+.tnn-offcanvas__header .navbar-brand img { height: 52px; }
+.tnn-menu-close {
+  width: 46px;
+  height: 46px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+}
+.tnn-offcanvas__content {
+  width: min(100%, 34rem);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 9vh, 5rem) 0 2rem;
+}
+.tnn-offcanvas__links {
+  margin-top: 1rem;
 }
 
 /* ---------- hero ---------- */
@@ -213,7 +255,7 @@ h5,
   position: relative;
   min-height: 92svh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   overflow: hidden;
   isolation: isolate;
   border-bottom-left-radius: 2.5rem;
@@ -251,7 +293,14 @@ h5,
 }
 .tnn-hero-inner {
   color: #fff;
-  padding: 6rem 0 5rem;
+  padding: 5rem 1rem;
+}
+.tnn-hero-logo {
+  width: clamp(190px, 28vw, 360px);
+  height: auto;
+  max-height: 28svh;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 28px rgba(4, 18, 30, .45));
 }
 .tnn-hero-inner h1,
 .tnn-hero-inner p {
@@ -368,8 +417,12 @@ h5,
 .tnn-card:hover .tnn-card__media img {
   transform: scale(1.05);
 }
-.tnn-card__media--compartido img { object-position: center 40%; }
-.tnn-card__media--todo-incluido img { object-position: center 48%; }
+.tnn-card__media--compartido img { object-position: center 46%; }
+.tnn-card__media--todo-incluido img { object-position: center 54%; }
+.tnn-card__media--privado img { object-position: center 38%; }
+.tnn-card__media--familiar img { object-position: center 42%; }
+.tnn-card__media--pedida img { object-position: center 40%; }
+.tnn-card__media--celebracion img { object-position: center 48%; }
 .tnn-card__image-icon {
   position: absolute;
   right: 1rem;
@@ -436,6 +489,14 @@ h5,
 }
 
 @media (max-width: 575.98px) {
+  .tnn-nav .navbar-brand { max-width: calc(100vw - 154px); }
+  .tnn-nav .navbar-brand img { height: 42px; flex: none; }
+  .tnn-brand-name { max-width: 9.4rem; font-size: .86rem; }
+  .tnn-hero { min-height: 88svh; }
+  .tnn-hero-logo { width: min(68vw, 280px); max-height: 24svh; }
+  .tnn-hero h1 { font-size: 2.5rem; }
+  .tnn-hero-inner .lead { font-size: 1rem; }
+  .tnn-hero-inner .btn { width: min(100%, 19rem); }
   .tnn-card { border-radius: 1rem; }
   .tnn-card__body { padding: 1.25rem; }
   .tnn-card__heading { grid-template-columns: minmax(0, 1fr) 6.8rem; gap: 0.75rem; }

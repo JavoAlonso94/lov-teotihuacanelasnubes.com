@@ -9,6 +9,12 @@ import crew from "@/assets/tnn-crew.jpg.asset.json";
 import logo from "@/assets/logo-tnn.png.asset.json";
 import launchVideo from "@/assets/despegue.mp4.asset.json";
 import sunriseVideo from "@/assets/amanecer.mp4.asset.json";
+import packageShared from "@/assets/paquete-4.png.asset.json";
+import packageAllInclusive from "@/assets/paquete-9.png.asset.json";
+import packagePrivate from "@/assets/paquete-8.png.asset.json";
+import packageFamily from "@/assets/paquete-6.png.asset.json";
+import packageProposal from "@/assets/paquete-7.png.asset.json";
+import packageCelebration from "@/assets/paquete-3.png.asset.json";
 
 export const media = {
   heroVideo: heroVideo.url,
@@ -25,12 +31,12 @@ export const media = {
 };
 
 export const flightImages: Record<string, string> = {
-  compartido: media.shared,
-  "todo-incluido": media.crew,
-  privado: media.private,
-  familiar: media.family,
-  pedida: media.proposal,
-  celebracion: media.celebration,
+  compartido: packageShared.url,
+  "todo-incluido": packageAllInclusive.url,
+  privado: packagePrivate.url,
+  familiar: packageFamily.url,
+  pedida: packageProposal.url,
+  celebracion: packageCelebration.url,
 };
 
 export const galleryImages = [
