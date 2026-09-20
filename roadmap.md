@@ -14,5 +14,6 @@
 - [x] Añadir carrito de una experiencia y pago completo con Clip en pruebas
 - [x] Validar paquete, pasajeros, fecha y datos del comprador en navegador y servidor
 - [x] Integrar las nuevas fotografías en Nosotros, Galería y Contacto
+- [x] Reemplazar fotografías generadas por las ocho fotografías reales del usuario
 - [x] Organizar recomendaciones en antes, durante y después
 - [ ] Verificar el pago de prueba con una tarjeta autorizada por Clip
