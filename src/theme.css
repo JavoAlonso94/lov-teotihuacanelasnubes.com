@@ -63,6 +63,7 @@
 /* ---------- base ---------- */
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 body {
   font-family: var(--bs-body-font-family);
