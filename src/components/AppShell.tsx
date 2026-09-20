@@ -76,8 +76,9 @@ export function AppShell({ children }: { children: ReactNode }) {
       </div>
       <nav className={`tnn-nav ${scrolled ? "is-scrolled" : ""}`}>
         <div className="container tnn-app d-flex align-items-center justify-content-between py-2">
-          <Link to="/" className="navbar-brand d-flex align-items-center gap-2 m-0">
+          <Link to="/" className="navbar-brand d-flex min-w-0 align-items-center gap-2 m-0">
             <img src={logo.url} alt="Teotihuacán en las nubes" />
+            <span className="tnn-brand-name">Teotihuacán en las nubes</span>
           </Link>
 
           <div className="d-none d-lg-flex align-items-center gap-1">
@@ -129,36 +130,43 @@ export function AppShell({ children }: { children: ReactNode }) {
         onClick={() => setMenuOpen(false)}
       >
         <aside
-          className="tnn-offcanvas position-absolute top-0 end-0 h-100 p-4 animate__animated animate__slideInRight animate__faster"
-          style={{ width: "min(86vw, 340px)" }}
+          className="tnn-offcanvas position-absolute top-0 end-0 h-100 w-100 p-4 animate__animated animate__fadeIn animate__faster"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="d-flex justify-content-between align-items-center mb-4">
-            <span className="tnn-eyebrow">Menú</span>
-            <button className="btn btn-outline-tnn px-3 py-1" onClick={() => setMenuOpen(false)}>
+          <div className="tnn-offcanvas__header d-flex justify-content-between align-items-center">
+            <Link to="/" className="navbar-brand d-flex min-w-0 align-items-center gap-2 m-0" onClick={() => setMenuOpen(false)}>
+              <img src={logo.url} alt="" />
+              <span className="tnn-brand-name">Teotihuacán en las nubes</span>
+            </Link>
+            <button className="btn btn-outline-tnn tnn-menu-close" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">
               <i className="fa-solid fa-xmark" />
             </button>
           </div>
-          {NAV.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className={`tnn-link ${path === n.to ? "active" : ""}`}
-              onClick={() => setMenuOpen(false)}
+          <div className="tnn-offcanvas__content">
+            <span className="tnn-eyebrow">Explora</span>
+            <div className="tnn-offcanvas__links">
+              {NAV.map((n) => (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  className={`tnn-link ${path === n.to ? "active" : ""}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <i className={`${n.icon} me-3`} />
+                  {n.label}
+                </Link>
+              ))}
+            </div>
+            <a
+              href={waLink("¡Hola! Quiero reservar un vuelo en globo.")}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-tnn w-100 mt-4"
             >
-              <i className={`${n.icon} me-3`} />
-              {n.label}
-            </Link>
-          ))}
-          <a
-            href={waLink("¡Hola! Quiero reservar un vuelo en globo.")}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-tnn w-100 mt-4"
-          >
-            <i className="fa-brands fa-whatsapp me-2" />
-            Reservar por WhatsApp
-          </a>
+              <i className="fa-brands fa-whatsapp me-2" />
+              Reservar por WhatsApp
+            </a>
+          </div>
         </aside>
       </div>
 

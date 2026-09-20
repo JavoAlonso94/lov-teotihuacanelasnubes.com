@@ -32,12 +32,11 @@ function Index() {
         <video autoPlay muted loop playsInline poster={media.pano}>
           <source src={media.heroVideo} type="video/mp4" />
         </video>
-        <div className="container tnn-app tnn-hero-inner">
+        <div className="container tnn-app tnn-hero-inner text-center d-flex flex-column align-items-center">
           <img
             src={media.logo}
             alt="Teotihuacán en las nubes"
-            style={{ height: 120 }}
-            className="tnn-balloon-float mb-3"
+            className="tnn-hero-logo tnn-balloon-float mb-3"
           />
           <p className="tnn-eyebrow text-white-50">Teotihuacán en las nubes.</p>
           <h1 className="animate__animated animate__fadeInUp">
@@ -53,7 +52,7 @@ function Index() {
             Descubre la magia de volar en globo aerostático sobre una de las ciudades precolombinas
             más importantes del mundo y maravíllate del panorama desde las nubes.
           </p>
-          <div className="d-flex flex-wrap gap-3 mt-4">
+          <div className="d-flex flex-wrap justify-content-center gap-3 mt-4">
             <a
               className="btn btn-tnn btn-lg"
               href={waLink("¡Hola! Quiero reservar un vuelo en globo en Teotihuacán.")}
