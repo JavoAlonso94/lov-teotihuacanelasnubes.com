@@ -14,7 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clip_orders: {
+        Row: {
+          amount: number
+          clip_payment_id: string | null
+          clip_status: string | null
+          created_at: string
+          currency: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          flight_date: string
+          id: string
+          idempotency_key: string
+          package_id: string
+          passengers: number
+          provider_response: Json | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          clip_payment_id?: string | null
+          clip_status?: string | null
+          created_at?: string
+          currency?: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          flight_date: string
+          id?: string
+          idempotency_key: string
+          package_id: string
+          passengers: number
+          provider_response?: Json | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          clip_payment_id?: string | null
+          clip_status?: string | null
+          created_at?: string
+          currency?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string
+          flight_date?: string
+          id?: string
+          idempotency_key?: string
+          package_id?: string
+          passengers?: number
+          provider_response?: Json | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
