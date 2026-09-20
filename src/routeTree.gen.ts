@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as NosotrosRouteImport } from './routes/nosotros'
@@ -19,6 +20,11 @@ import { Route as VuelosRouteImport } from './routes/vuelos'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoRoute = ContactoRouteImport.update({
@@ -49,6 +55,7 @@ const VuelosRoute = VuelosRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
   '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
   '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
   '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
@@ -75,12 +84,26 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/contacto' | '/galeria' | '/nosotros' | '/terminos' | '/vuelos'
+    | '/'
+    | '/checkout'
+    | '/contacto'
+    | '/galeria'
+    | '/nosotros'
+    | '/terminos'
+    | '/vuelos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contacto' | '/galeria' | '/nosotros' | '/terminos' | '/vuelos'
+  to:
+    | '/'
+    | '/checkout'
+    | '/contacto'
+    | '/galeria'
+    | '/nosotros'
+    | '/terminos'
+    | '/vuelos'
   id:
     | '__root__'
     | '/'
+    | '/checkout'
     | '/contacto'
     | '/galeria'
     | '/nosotros'
@@ -90,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContactoRoute: typeof ContactoRoute
   GaleriaRoute: typeof GaleriaRoute
   NosotrosRoute: typeof NosotrosRoute
@@ -104,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contacto': {
@@ -146,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CheckoutRoute: CheckoutRoute,
   ContactoRoute: ContactoRoute,
   GaleriaRoute: GaleriaRoute,
   NosotrosRoute: NosotrosRoute,

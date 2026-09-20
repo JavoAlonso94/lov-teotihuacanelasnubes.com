@@ -37,9 +37,9 @@ function Nosotros() {
       <section className="tnn-section">
         <div className="container tnn-app">
           <div className="row g-3 tnn-gallery mb-5">
-            {[media.pano, media.shared, media.crew].map((src, i) => (
+            {[media.toastBasket, media.toastFlight, media.toastGround].map((src, i) => (
               <div className="col-12 col-md-4" key={src} data-aos="flip-up" data-aos-delay={i * 120}>
-                <figure style={{ height: 260 }}>
+                <figure className="tnn-gallery-frame tnn-gallery-frame--story">
                   <img src={src} alt="Carrete fotográfico de vuelos en globo" loading="lazy" />
                 </figure>
               </div>

@@ -9,6 +9,7 @@ const NAV = [
   { to: "/nosotros", label: "Nosotros", icon: "fa-solid fa-people-group" },
   { to: "/galeria", label: "Galería", icon: "fa-solid fa-images" },
   { to: "/contacto", label: "Contacto", icon: "fa-solid fa-comment-dots" },
+  { to: "/checkout", label: "Comprar", icon: "fa-solid fa-basket-shopping" },
 ] as const;
 
 function useTheme() {
@@ -125,8 +126,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       {/* Mobile slide-in menu */}
       <div
-        className={`position-fixed top-0 start-0 w-100 h-100 ${menuOpen ? "" : "d-none"}`}
-        style={{ zIndex: 1060, background: "rgba(4,18,30,.55)", backdropFilter: "blur(4px)" }}
+        className={`tnn-menu-layer position-fixed top-0 start-0 w-100 h-100 ${menuOpen ? "" : "d-none"}`}
         onClick={() => setMenuOpen(false)}
       >
         <aside
@@ -157,15 +157,9 @@ export function AppShell({ children }: { children: ReactNode }) {
                 </Link>
               ))}
             </div>
-            <a
-              href={waLink("¡Hola! Quiero reservar un vuelo en globo.")}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-tnn w-100 mt-4"
-            >
-              <i className="fa-brands fa-whatsapp me-2" />
-              Reservar por WhatsApp
-            </a>
+            <Link to="/checkout" className="btn btn-tnn w-100 mt-4" onClick={() => setMenuOpen(false)}>
+              <i className="fa-solid fa-lock me-2" />Comprar vuelo
+            </Link>
           </div>
         </aside>
       </div>
@@ -221,16 +215,6 @@ export function AppShell({ children }: { children: ReactNode }) {
           </p>
         </div>
       </footer>
-
-      <a
-        className="tnn-wa"
-        href={waLink("¡Hola! Quiero información de un vuelo en globo.")}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="WhatsApp"
-      >
-        <i className="fa-brands fa-whatsapp" />
-      </a>
 
       <div className="tnn-social-float d-none d-lg-flex" aria-label="Redes sociales">
         <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">

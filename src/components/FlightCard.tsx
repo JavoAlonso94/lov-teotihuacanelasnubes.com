@@ -1,28 +1,5 @@
-import { tnnSwal, waLink, type Flight } from "@/lib/tnn";
-
-export function reservar(flight: Flight) {
-  tnnSwal
-    .fire({
-      title: flight.name,
-      html: `
-        <p class="mb-2">${flight.description}</p>
-        <p class="tnn-price mb-0">${flight.price}<span class="small tnn-muted"> ${flight.note ?? ""}</span></p>
-        <p class="small tnn-muted mt-2 mb-0">Reserva con el 50% y asegura tu lugar.</p>`,
-      icon: "info",
-      iconColor: "#29abe2",
-      showCancelButton: true,
-      confirmButtonText: '<i class="fa-brands fa-whatsapp"></i> Reservar ahora',
-      cancelButtonText: "Seguir viendo",
-    })
-    .then((r) => {
-      if (r.isConfirmed) {
-        window.open(
-          waLink(`¡Hola! Me interesa el ${flight.name} (${flight.price}). ¿Hay disponibilidad?`),
-          "_blank",
-        );
-      }
-    });
-}
+import { Link } from "@tanstack/react-router";
+import type { Flight } from "@/lib/tnn";
 
 export function FlightCard({ flight, image, delay = 0 }: { flight: Flight; image: string; delay?: number }) {
   return (
@@ -48,10 +25,10 @@ export function FlightCard({ flight, image, delay = 0 }: { flight: Flight; image
             </div>
           </div>
           <p className="tnn-card__description">{flight.description}</p>
-          <button className="btn btn-sky w-100 mt-auto" onClick={() => reservar(flight)}>
-            Reservar ahora
+          <Link className="btn btn-sky w-100 mt-auto" to="/checkout" search={{ package: flight.id }}>
+            Comprar ahora
             <i className="fa-solid fa-arrow-right ms-2" aria-hidden="true" />
-          </button>
+          </Link>
         </div>
       </article>
     </div>
