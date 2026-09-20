@@ -15,6 +15,13 @@ import packagePrivate from "@/assets/paquete-8.png.asset.json";
 import packageFamily from "@/assets/paquete-6.png.asset.json";
 import packageProposal from "@/assets/paquete-7.png.asset.json";
 import packageCelebration from "@/assets/paquete-3.png.asset.json";
+import experience11 from "@/assets/experiencia-vuelo-11.png.asset.json";
+import experience12 from "@/assets/experiencia-vuelo-12.png.asset.json";
+import experience13 from "@/assets/experiencia-vuelo-13.png.asset.json";
+import experience14 from "@/assets/experiencia-vuelo-14.png.asset.json";
+import experience15 from "@/assets/experiencia-vuelo-15.png.asset.json";
+import experience16 from "@/assets/experiencia-vuelo-16.png.asset.json";
+import experience17 from "@/assets/experiencia-vuelo-17.png.asset.json";
 
 export const media = {
   heroVideo: heroVideo.url,
@@ -28,6 +35,13 @@ export const media = {
   crew: crew.url,
   launchVideo: launchVideo.url,
   sunriseVideo: sunriseVideo.url,
+  toastClose: experience11.url,
+  toastBasket: experience12.url,
+  toastFlight: experience13.url,
+  toastPour: experience14.url,
+  toastGround: experience15.url,
+  toastFamily: experience16.url,
+  toastTravelers: experience17.url,
 };
 
 export const flightImages: Record<string, string> = {
@@ -40,6 +54,13 @@ export const flightImages: Record<string, string> = {
 };
 
 export const galleryImages = [
+  { src: media.toastFlight, alt: "Pasajeros brindando durante el vuelo sobre Teotihuacán" },
+  { src: media.toastClose, alt: "Brindis de celebración después del vuelo" },
+  { src: media.toastBasket, alt: "Viajeros brindando dentro de la canastilla" },
+  { src: media.toastPour, alt: "Brindis con vino espumoso incluido en la experiencia" },
+  { src: media.toastGround, alt: "Grupo celebrando junto al globo aerostático" },
+  { src: media.toastFamily, alt: "Familia celebrando su vuelo en globo" },
+  { src: media.toastTravelers, alt: "Viajeros disfrutando el brindis en Teotihuacán" },
   { src: media.pano, alt: "Globos sobre el valle de Teotihuacán al amanecer" },
   { src: media.shared, alt: "Viajeros en canastilla compartida" },
   { src: media.private, alt: "Vuelo privado para parejas" },

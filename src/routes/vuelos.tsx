@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FlightCard } from "@/components/FlightCard";
 import { flightImages, media } from "@/lib/media";
-import { flights, includes, safety, waLink } from "@/lib/tnn";
+import { flights, includes, safety } from "@/lib/tnn";
 
 export const Route = createFileRoute("/vuelos")({
   component: Vuelos,
@@ -24,15 +24,23 @@ export const Route = createFileRoute("/vuelos")({
   }),
 });
 
-const yes = [
-  "Chamarra o sudadera ligera.",
-  "Pantalón largo o jeans.",
-  "Calzado cómodo (botas o tenis).",
-  "Gafas para sol y gorra.",
-  "Cámara con correa.",
-  "Protector solar.",
+const recommendations = [
+  {
+    title: "Antes del vuelo",
+    icon: "fa-regular fa-calendar-check",
+    items: ["Descansa bien y confirma tu hora de llegada.", "Lleva chamarra, pantalón largo y calzado cerrado.", "Evita alcohol la noche anterior e informa cualquier condición médica."],
+  },
+  {
+    title: "Durante el vuelo",
+    icon: "fa-solid fa-cloud-sun",
+    items: ["Sigue siempre las indicaciones del piloto.", "Mantén cámaras y teléfonos sujetos con correa.", "Disfruta el paisaje sin sacar brazos u objetos de la canastilla."],
+  },
+  {
+    title: "Después del vuelo",
+    icon: "fa-solid fa-champagne-glasses",
+    items: ["Espera la señal del equipo antes de salir de la canastilla.", "Disfruta el brindis, certificado y desayuno incluidos.", "Comparte tus fotos y conserva los datos de tu experiencia."],
+  },
 ];
-const no = ["Falda o vestido.", "Bufanda.", "Sandalias."];
 
 function Vuelos() {
   return (
@@ -78,65 +86,24 @@ function Vuelos() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-5">
-            <a
-              className="btn btn-tnn btn-lg"
-              href={waLink("Hola, quiero reservar ahora un vuelo en globo.")}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="fa-brands fa-whatsapp me-2" />
-              Reserva ahora
-            </a>
-          </div>
+          <div className="text-center mt-5"><a className="btn btn-tnn btn-lg" href="/checkout"><i className="fa-solid fa-lock me-2" />Comprar vuelo</a></div>
         </div>
       </section>
 
       <section className="tnn-section">
         <div className="container tnn-app">
           <h2 className="display-6 text-center mb-5" data-aos="fade-up">
-            Recomendaciones para el día de tu vuelo
+            Tu experiencia, paso a paso
           </h2>
           <div className="row g-4">
-            <div className="col-12 col-lg-6" data-aos="fade-right">
-              <div className="tnn-tile h-100">
-                <h3 className="h5 mb-3">
-                  <i className="fa-solid fa-circle-check me-2 text-success" />
-                  Te recomendamos usar
-                </h3>
-                <ul className="list-unstyled mb-0">
-                  {yes.map((t) => (
-                    <li key={t} className="d-flex gap-2 py-2 border-bottom" style={{ borderColor: "var(--tnn-line)" }}>
-                      <i className="fa-solid fa-check text-success mt-1" />
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="col-12 col-lg-6" data-aos="fade-left">
-              <div className="tnn-tile h-100">
-                <h3 className="h5 mb-3">
-                  <i className="fa-solid fa-circle-xmark me-2 text-danger" />
-                  Por tu seguridad no asistas con
-                </h3>
-                <ul className="list-unstyled mb-0">
-                  {no.map((t) => (
-                    <li key={t} className="d-flex gap-2 py-2 border-bottom" style={{ borderColor: "var(--tnn-line)" }}>
-                      <i className="fa-solid fa-xmark text-danger mt-1" />
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
-                <img
-                  src={media.pano}
-                  alt="Globos sobre el valle de Teotihuacán"
-                  className="w-100 mt-4 rounded-4"
-                  style={{ objectFit: "cover", height: 180 }}
-                  loading="lazy"
-                />
-              </div>
-            </div>
+            {recommendations.map((stage, i) => <div className="col-12 col-md-4" key={stage.title} data-aos="fade-up" data-aos-delay={i * 100}>
+              <article className="tnn-tile tnn-recommendation h-100">
+                <span className="tnn-recommendation__number">0{i + 1}</span>
+                <span className="tnn-ico mb-3"><i className={stage.icon} /></span>
+                <h3 className="h5">{stage.title}</h3>
+                <ul className="list-unstyled mb-0">{stage.items.map((item) => <li key={item}><i className="fa-solid fa-check" /><span>{item}</span></li>)}</ul>
+              </article>
+            </div>)}
           </div>
         </div>
       </section>

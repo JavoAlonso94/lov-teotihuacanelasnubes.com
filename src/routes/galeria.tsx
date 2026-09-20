@@ -47,7 +47,7 @@ function Galeria() {
                 data-aos-delay={(i % 3) * 100}
               >
                 <figure
-                  style={{ height: i % 5 === 0 ? 380 : 240 }}
+                  className={i % 5 === 0 ? "tnn-gallery-frame tnn-gallery-frame--wide" : "tnn-gallery-frame"}
                   onClick={() =>
                     tnnSwal.fire({
                       imageUrl: img.src,
@@ -80,7 +80,7 @@ function Galeria() {
             ].map(([src, label], i) => (
               <div className="col-10 col-sm-6 col-lg-4" key={label} data-aos="zoom-in" data-aos-delay={i * 100}>
                 <div className="tnn-video-card">
-                  <video src={src} controls muted playsInline preload="metadata" poster={galleryImages[i]?.src} />
+                  <video className="w-100" src={src} controls muted playsInline preload="metadata" poster={galleryImages[i]?.src} />
                   <span className="tnn-video-label"><i className="fa-solid fa-play-circle me-2" />{label}</span>
                 </div>
               </div>

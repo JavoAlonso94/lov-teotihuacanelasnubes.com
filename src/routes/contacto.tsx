@@ -35,7 +35,7 @@ function Contacto() {
     <section className="tnn-section">
       <div className="container tnn-app"><div className="row g-4 align-items-stretch">
         <div className="col-12 col-lg-6" data-aos="fade-right">
-          <div className="tnn-card h-100"><img src={media.pano} alt="Globos sobre Teotihuacán" className="w-100 h-100" style={{ objectFit: "cover", minHeight: 400 }} /></div>
+          <div className="tnn-card tnn-contact-photo h-100"><img src={media.toastTravelers} alt="Viajeros celebrando su experiencia en Teotihuacán" className="w-100 h-100" /></div>
         </div>
         <div className="col-12 col-lg-6" data-aos="fade-left">
           <form className="tnn-glass p-4 p-lg-5 h-100" onSubmit={submit}>

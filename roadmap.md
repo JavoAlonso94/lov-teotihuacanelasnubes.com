@@ -10,3 +10,9 @@
 - [x] Agregar preloader con logo y animaciones modernas
 - [x] Integrar fotos reales en paquetes y refinar portada, navegación y contraste
 - [x] Verificar navegación, adaptación móvil y funcionamiento visual
+- [x] Eliminar el botón flotante de WhatsApp
+- [x] Añadir carrito de una experiencia y pago completo con Clip en pruebas
+- [x] Validar paquete, pasajeros, fecha y datos del comprador en navegador y servidor
+- [x] Integrar las nuevas fotografías en Nosotros, Galería y Contacto
+- [x] Organizar recomendaciones en antes, durante y después
+- [ ] Verificar el pago de prueba con una tarjeta autorizada por Clip

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FlightCard } from "@/components/FlightCard";
 import { flightImages, media } from "@/lib/media";
-import { extras, flights, includes, safety, tnnSwal, waLink } from "@/lib/tnn";
+import { extras, flights, includes, safety, tnnSwal } from "@/lib/tnn";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -53,15 +53,9 @@ function Index() {
             más importantes del mundo y maravíllate del panorama desde las nubes.
           </p>
           <div className="d-flex flex-wrap justify-content-center gap-3 mt-4">
-            <a
-              className="btn btn-tnn btn-lg"
-              href={waLink("¡Hola! Quiero reservar un vuelo en globo en Teotihuacán.")}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="fa-brands fa-whatsapp me-2" />
-              Reservar mi vuelo
-            </a>
+            <Link className="btn btn-tnn btn-lg" to="/checkout">
+              <i className="fa-solid fa-lock me-2" />Comprar mi vuelo
+            </Link>
             <Link className="btn btn-ghost btn-lg" to="/vuelos">
               Ver paquetes
               <i className="fa-solid fa-arrow-right ms-2" />
@@ -216,30 +210,20 @@ function Index() {
             <span className="tnn-ico sun mx-auto mb-3">
               <i className="fa-regular fa-calendar-check" />
             </span>
-            <h2 className="display-6">¡Aparta tu lugar con anticipación!</h2>
+            <h2 className="display-6">Compra tu experiencia en línea</h2>
             <p className="tnn-muted mx-auto" style={{ maxWidth: 720 }}>
-              Reserva con tan solo el <b>50% del total a pagar</b> y asegura tus lugares. Llámanos o
-              mándanos WhatsApp: nuestros asesores se pondrán en contacto contigo para agendar tu
-              experiencia.
+              Elige tu paquete, fecha y número de pasajeros. Paga el <b>100% del total</b> mediante
+              el formulario seguro de Clip y recibe seguimiento para confirmar tu horario.
             </p>
-            <a
-              className="btn btn-tnn btn-lg"
-              href={waLink("Hola, quiero consultar disponibilidad para un vuelo en globo.")}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Consulta disponibilidad
-            </a>
+            <Link className="btn btn-tnn btn-lg" to="/checkout"><i className="fa-solid fa-basket-shopping me-2" />Ir a comprar</Link>
             <div className="d-flex flex-wrap justify-content-center gap-4 mt-4 fs-2 tnn-muted">
               <i className="fa-brands fa-cc-visa" />
               <i className="fa-brands fa-cc-mastercard" />
               <i className="fa-brands fa-cc-amex" />
-              <i className="fa-brands fa-cc-paypal" />
-              <i className="fa-solid fa-store" title="Oxxo y 7Eleven" />
-              <i className="fa-solid fa-building-columns" title="Transferencia bancaria" />
+              <i className="fa-solid fa-shield-halved" title="Pago protegido" />
             </div>
             <p className="small tnn-muted mt-3 mb-0">
-              Efectivo en Oxxo o 7Eleven · Transferencia o depósito bancario · PayPal
+              Pago cifrado y procesado de forma segura por Clip
             </p>
           </div>
         </div>

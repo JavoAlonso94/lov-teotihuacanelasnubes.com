@@ -15,7 +15,7 @@ export const Route = createFileRoute("/terminos")({
 });
 
 const terms = [
-  ["Reservación y pago", "Tu lugar queda confirmado al cubrir el 50% del total. El saldo restante deberá liquidarse antes del vuelo según las indicaciones de tu asesor."],
+  ["Reservación y pago", "Tu lugar queda confirmado al cubrir el 100% del total en el pago seguro con Clip. Recibirás seguimiento para confirmar el horario de tu experiencia."],
   ["Condiciones meteorológicas", "La seguridad es prioridad. El vuelo puede reprogramarse cuando el piloto determine que el clima no permite una operación segura."],
   ["Cambios y cancelaciones", "Los cambios de fecha están sujetos a disponibilidad. Comunícate con anticipación para conocer las condiciones aplicables a tu reservación."],
   ["Puntualidad", "La hora de llegada es indispensable para coordinar el inflado y despegue. Una llegada tardía puede ocasionar la pérdida del vuelo."],
