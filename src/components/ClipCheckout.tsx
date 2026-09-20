@@ -23,7 +23,7 @@ export function ClipCheckout() {
   const search = useSearch({ strict: false }) as { package?: string };
   const initial = search.package && search.package in packageRules ? search.package as PackageId : "compartido";
   const [packageId, setPackageId] = useState<PackageId>(initial);
-  const [passengers, setPassengers] = useState(packageRules[initial].min);
+  const [passengers, setPassengers] = useState<number>(packageRules[initial].min);
   const [sdkReady, setSdkReady] = useState(false);
   const [processing, setProcessing] = useState(false);
   const card = useRef<ClipCard | null>(null);
