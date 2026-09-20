@@ -8,5 +8,5 @@
 - [x] Agregar términos y condiciones
 - [x] Agregar efectos blur y botones flotantes de redes sociales
 - [x] Agregar preloader con logo y animaciones modernas
-- [ ] Integrar fotos reales en paquetes y refinar portada, navegación y contraste
-- [ ] Verificar navegación, adaptación móvil y funcionamiento visual
+- [x] Integrar fotos reales en paquetes y refinar portada, navegación y contraste
+- [x] Verificar navegación, adaptación móvil y funcionamiento visual
