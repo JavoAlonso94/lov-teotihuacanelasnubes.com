@@ -794,6 +794,8 @@ h5,
   border-top: 1px solid var(--tnn-line);
   padding: 3rem 0 6rem;
 }
+.tnn-footer [class*="col-"] { min-width: 0; }
+.tnn-footer .tnn-muted { overflow-wrap: anywhere; }
 @media (min-width: 992px) {
   .tnn-footer {
     padding-bottom: 3rem;
