@@ -1,3 +1,4 @@
+import packagesData from "@/data/packages.json";
 import Swal from "sweetalert2";
 
 export const WHATSAPP_PRIMARY = "525523317774";
@@ -29,69 +30,18 @@ export type Flight = {
   image?: string;
 };
 
-export const flights: Flight[] = [
-  {
-    id: "compartido",
-    name: "Vuelo Compartido",
-    tagline: "Nuestro vuelo más popular entre nuestros viajeros.",
-    description:
-      "Conoce y disfruta el valle de Teotihuacán desde las alturas compartiendo canastilla con más viajeros como tú. Haz amigos en las nubes y viaja seguro con nosotros.",
-    price: "$2,400.00 MXN",
-    note: "por persona",
-    icon: "fa-solid fa-users",
-    badge: "Más popular",
-  },
-  {
-    id: "todo-incluido",
-    name: "Vuelo Todo Incluido",
-    tagline: "Nosotros nos hacemos cargo de todo.",
-    description:
-      "Incluye transporte redondo desde CDMX (compartido) y entradas a la zona arqueológica. No te preocupes por nada, pasarás un amanecer inolvidable en las nubes.",
-    price: "$3,200.00 MXN",
-    note: "por persona",
-    icon: "fa-solid fa-van-shuttle",
-  },
-  {
-    id: "privado",
-    name: "Vuelo Privado",
-    tagline: "Nuestro vuelo especial para parejas.",
-    description:
-      "Un viaje en globo único admirando la belleza de Teotihuacán con panorama de 360° de todo el valle, en una canastilla exclusiva para su comodidad.",
-    price: "$9,500.00 MXN",
-    note: "por pareja",
-    icon: "fa-solid fa-heart",
-  },
-  {
-    id: "familiar",
-    name: "Vuelo Privado Familiar",
-    tagline: "Pasa un amanecer de ensueño en Teotihuacán.",
-    description:
-      "Junta a tu familia, amigos o compañeros de trabajo y vuelen en un globo exclusivo para ustedes (a partir de 4 personas).",
-    price: "$3,200.00 MXN",
-    note: "por persona",
-    icon: "fa-solid fa-people-roof",
-  },
-  {
-    id: "pedida",
-    name: "Vuelo Pedida de Mano",
-    tagline: "¿Estás listo para dar el siguiente paso?",
-    description:
-      "Vayan juntos al cielo de los dioses en un vuelo exclusivo. Incluye ramo de rosas y lona con el mensaje «¿Te quieres casar conmigo?». Seguro dirá ¡sí, acepto!",
-    price: "$10,800.00 MXN",
-    note: "por pareja",
-    icon: "fa-solid fa-ring",
-  },
-  {
-    id: "celebracion",
-    name: "Vuelo Celebración",
-    tagline: "Porque la vida pasa volando, celebra en globo.",
-    description:
-      "Festeja un año más de vida o sorprende a esa persona especial. Incluye pastel sorpresa y lona con el mensaje «¡Feliz Cumpleaños!» o «Feliz Aniversario».",
-    price: "$2,550.00 MXN",
-    note: "por persona",
-    icon: "fa-solid fa-cake-candles",
-  },
-];
+const mxn = new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" });
+
+export const flights: Flight[] = packagesData.map((p) => ({
+  id: p.id,
+  name: p.name,
+  tagline: p.tagline,
+  description: p.description,
+  price: `${mxn.format(p.unitPrice)} MXN`.replace("MX$", "$"),
+  note: p.note,
+  icon: p.icon,
+  ...("badge" in p && p.badge ? { badge: p.badge } : {}),
+}));
 
 export const includes = [
   { icon: "fa-solid fa-fire-flame-curved", text: "Vuelo en globo de 45 a 60 min." },

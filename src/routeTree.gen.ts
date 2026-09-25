@@ -16,6 +16,7 @@ import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as NosotrosRouteImport } from './routes/nosotros'
 import { Route as TerminosRouteImport } from './routes/terminos'
 import { Route as VuelosRouteImport } from './routes/vuelos'
+import { Route as ApiPublicClipWebhookRouteImport } from './routes/api/public/clip-webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const VuelosRoute = VuelosRouteImport.update({
   path: '/vuelos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicClipWebhookRoute = ApiPublicClipWebhookRouteImport.update({
+  id: '/api/public/clip-webhook',
+  path: '/api/public/clip-webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/nosotros': typeof NosotrosRoute
   '/terminos': typeof TerminosRoute
   '/vuelos': typeof VuelosRoute
+  '/api/public/clip-webhook': typeof ApiPublicClipWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/nosotros': typeof NosotrosRoute
   '/terminos': typeof TerminosRoute
   '/vuelos': typeof VuelosRoute
+  '/api/public/clip-webhook': typeof ApiPublicClipWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/nosotros': typeof NosotrosRoute
   '/terminos': typeof TerminosRoute
   '/vuelos': typeof VuelosRoute
+  '/api/public/clip-webhook': typeof ApiPublicClipWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/nosotros'
     | '/terminos'
     | '/vuelos'
+    | '/api/public/clip-webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/nosotros'
     | '/terminos'
     | '/vuelos'
+    | '/api/public/clip-webhook'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/nosotros'
     | '/terminos'
     | '/vuelos'
+    | '/api/public/clip-webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   NosotrosRoute: typeof NosotrosRoute
   TerminosRoute: typeof TerminosRoute
   VuelosRoute: typeof VuelosRoute
+  ApiPublicClipWebhookRoute: typeof ApiPublicClipWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VuelosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/clip-webhook': {
+      id: '/api/public/clip-webhook'
+      path: '/api/public/clip-webhook'
+      fullPath: '/api/public/clip-webhook'
+      preLoaderRoute: typeof ApiPublicClipWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   NosotrosRoute: NosotrosRoute,
   TerminosRoute: TerminosRoute,
   VuelosRoute: VuelosRoute,
+  ApiPublicClipWebhookRoute: ApiPublicClipWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

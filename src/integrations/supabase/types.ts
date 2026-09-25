@@ -17,6 +17,7 @@ export type Database = {
       clip_orders: {
         Row: {
           amount: number
+          client_ip: string | null
           clip_payment_id: string | null
           clip_status: string | null
           created_at: string
@@ -29,12 +30,16 @@ export type Database = {
           idempotency_key: string
           package_id: string
           passengers: number
+          postal_code: string | null
           provider_response: Json | null
+          risk_level: string | null
+          session_id: string | null
           status: string
           updated_at: string
         }
         Insert: {
           amount: number
+          client_ip?: string | null
           clip_payment_id?: string | null
           clip_status?: string | null
           created_at?: string
@@ -47,12 +52,16 @@ export type Database = {
           idempotency_key: string
           package_id: string
           passengers: number
+          postal_code?: string | null
           provider_response?: Json | null
+          risk_level?: string | null
+          session_id?: string | null
           status?: string
           updated_at?: string
         }
         Update: {
           amount?: number
+          client_ip?: string | null
           clip_payment_id?: string | null
           clip_status?: string | null
           created_at?: string
@@ -65,7 +74,10 @@ export type Database = {
           idempotency_key?: string
           package_id?: string
           passengers?: number
+          postal_code?: string | null
           provider_response?: Json | null
+          risk_level?: string | null
+          session_id?: string | null
           status?: string
           updated_at?: string
         }

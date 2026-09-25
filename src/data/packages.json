@@ -1,0 +1,75 @@
+[
+  {
+    "id": "compartido",
+    "name": "Vuelo Compartido",
+    "tagline": "Nuestro vuelo más popular entre nuestros viajeros.",
+    "description": "Conoce y disfruta el valle de Teotihuacán desde las alturas compartiendo canastilla con más viajeros como tú. Haz amigos en las nubes y viaja seguro con nosotros.",
+    "unitPrice": 2400,
+    "note": "por persona",
+    "icon": "fa-solid fa-users",
+    "badge": "Más popular",
+    "minPassengers": 1,
+    "maxPassengers": 12,
+    "fixedPrice": false
+  },
+  {
+    "id": "todo-incluido",
+    "name": "Vuelo Todo Incluido",
+    "tagline": "Nosotros nos hacemos cargo de todo.",
+    "description": "Incluye transporte redondo desde CDMX (compartido) y entradas a la zona arqueológica. No te preocupes por nada, pasarás un amanecer inolvidable en las nubes.",
+    "unitPrice": 3200,
+    "note": "por persona",
+    "icon": "fa-solid fa-van-shuttle",
+    "minPassengers": 1,
+    "maxPassengers": 12,
+    "fixedPrice": false
+  },
+  {
+    "id": "privado",
+    "name": "Vuelo Privado",
+    "tagline": "Nuestro vuelo especial para parejas.",
+    "description": "Un viaje en globo único admirando la belleza de Teotihuacán con panorama de 360° de todo el valle, en una canastilla exclusiva para su comodidad.",
+    "unitPrice": 9500,
+    "note": "por pareja",
+    "icon": "fa-solid fa-heart",
+    "minPassengers": 2,
+    "maxPassengers": 2,
+    "fixedPrice": true
+  },
+  {
+    "id": "familiar",
+    "name": "Vuelo Privado Familiar",
+    "tagline": "Pasa un amanecer de ensueño en Teotihuacán.",
+    "description": "Junta a tu familia, amigos o compañeros de trabajo y vuelen en un globo exclusivo para ustedes (a partir de 4 personas).",
+    "unitPrice": 3200,
+    "note": "por persona",
+    "icon": "fa-solid fa-people-roof",
+    "minPassengers": 4,
+    "maxPassengers": 12,
+    "fixedPrice": false
+  },
+  {
+    "id": "pedida",
+    "name": "Vuelo Pedida de Mano",
+    "tagline": "¿Estás listo para dar el siguiente paso?",
+    "description": "Vayan juntos al cielo de los dioses en un vuelo exclusivo. Incluye ramo de rosas y lona con el mensaje «¿Te quieres casar conmigo?». Seguro dirá ¡sí, acepto!",
+    "unitPrice": 10800,
+    "note": "por pareja",
+    "icon": "fa-solid fa-ring",
+    "minPassengers": 2,
+    "maxPassengers": 2,
+    "fixedPrice": true
+  },
+  {
+    "id": "celebracion",
+    "name": "Vuelo Celebración",
+    "tagline": "Porque la vida pasa volando, celebra en globo.",
+    "description": "Festeja un año más de vida o sorprende a esa persona especial. Incluye pastel sorpresa y lona con el mensaje «¡Feliz Cumpleaños!» o «Feliz Aniversario».",
+    "unitPrice": 2550,
+    "note": "por persona",
+    "icon": "fa-solid fa-cake-candles",
+    "minPassengers": 1,
+    "maxPassengers": 12,
+    "fixedPrice": false
+  }
+]

@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { getRequestHeader, getRequestIP } from "@tanstack/react-start/server";
 import { checkoutSchema, calculateTotal, validatePackage } from "@/lib/checkout";
 
 type ClipResult = {
@@ -24,6 +25,28 @@ export const processClipPayment = createServerFn({ method: "POST" })
     if (!apiSecret) throw new Error("El pago no está disponible por el momento.");
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const clientIp = (getRequestHeader("cf-connecting-ip") ?? getRequestIP({ xForwardedFor: true }) ?? "").slice(0, 64);
+    const userAgent = (getRequestHeader("user-agent") ?? "").slice(0, 400);
+    const siteUrl = process.env["SITE_URL"] ?? "https://teotihuacanenlasnubes.com";
+
+    // Límite de intentos: máx. 5 por correo y 10 por IP en la última hora
+    const since = new Date(Date.now() - 3_600_000).toISOString();
+    const [{ count: byEmail }, { count: byIp }] = await Promise.all([
+      supabaseAdmin.from("clip_orders").select("id", { count: "exact", head: true }).eq("customer_email", data.customerEmail).gte("created_at", since),
+      clientIp
+        ? supabaseAdmin.from("clip_orders").select("id", { count: "exact", head: true }).eq("client_ip", clientIp).gte("created_at", since)
+        : Promise.resolve({ count: 0 }),
+    ]);
+    if ((byEmail ?? 0) >= 5 || (byIp ?? 0) >= 10) {
+      throw new Error("Demasiados intentos de pago. Espera una hora o contáctanos.");
+    }
+
+    const { count: previousApproved } = await supabaseAdmin
+      .from("clip_orders").select("id", { count: "exact", head: true })
+      .eq("customer_email", data.customerEmail).eq("status", "approved");
+    const { count: recentRejected } = await supabaseAdmin
+      .from("clip_orders").select("id", { count: "exact", head: true })
+      .eq("customer_email", data.customerEmail).in("status", ["rejected", "error"]).gte("created_at", since);
     const { data: existing } = await supabaseAdmin
       .from("clip_orders")
       .select("status, clip_payment_id")
@@ -34,6 +57,16 @@ export const processClipPayment = createServerFn({ method: "POST" })
       return { ok: true, paymentId: existing.clip_payment_id ?? "", status: "approved" };
     }
     if (existing) throw new Error("Este intento ya fue procesado. Inicia un pago nuevo.");
+
+    let riskScore = 10;
+    if (amount >= 9000) riskScore += 25;
+    if (data.passengers >= 8) riskScore += 15;
+    riskScore += Math.min((recentRejected ?? 0) * 20, 40);
+    if ((previousApproved ?? 0) > 0) riskScore -= 10;
+    riskScore = Math.max(1, Math.min(100, riskScore));
+    const riskLevel = riskScore >= 60 ? "high" : riskScore >= 30 ? "med" : "low";
+    const [firstName, ...rest] = data.customerName.split(/\s+/);
+    const phoneDigits = data.customerPhone.replace(/\D/g, "").slice(-10);
 
     const { error: insertError } = await supabaseAdmin.from("clip_orders").insert({
       idempotency_key: data.idempotencyKey,
@@ -46,6 +79,10 @@ export const processClipPayment = createServerFn({ method: "POST" })
       amount,
       currency: "MXN",
       status: "pending",
+      client_ip: clientIp || null,
+      session_id: data.sessionId,
+      risk_level: riskLevel,
+      postal_code: data.postalCode,
     });
     if (insertError) throw new Error("No pudimos preparar la compra. Intenta nuevamente.");
 
@@ -62,7 +99,27 @@ export const processClipPayment = createServerFn({ method: "POST" })
           currency: "MXN",
           description: `${rule.name} - ${data.passengers} pasajero${data.passengers === 1 ? "" : "s"}`,
           payment_method: { token: data.cardToken },
-          customer: { email: data.customerEmail, phone: data.customerPhone },
+          customer: {
+            first_name: firstName,
+            last_name: rest.join(" ") || firstName,
+            email: data.customerEmail,
+            phone: phoneDigits,
+            address: { postal_code: data.postalCode, country: "México" },
+          },
+          prevention_data: {
+            ...((previousApproved ?? 0) > 0 ? { customer_type: "returning_buyer" } : {}),
+            customer_risk_score: riskScore,
+            transaction_risk_level: riskLevel,
+            session_id: data.sessionId,
+            user_agent: userAgent,
+            request_3ds: riskLevel !== "low",
+          },
+          metadata: {
+            billing_address: { postal_code: data.postalCode, country: "México" },
+            website: siteUrl,
+          },
+          ...(clientIp ? { location: { ip: clientIp } } : {}),
+          webhook_url: `${siteUrl}/api/public/clip-webhook`,
           external_reference: data.idempotencyKey,
           capture_method: "automatic",
         }),
