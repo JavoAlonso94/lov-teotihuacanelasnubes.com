@@ -3,15 +3,16 @@ import packagesData from "@/data/packages.json";
 
 export type PackageRule = { name: string; unitPrice: number; min: number; max: number; fixed: boolean };
 
-export const packageRules: Record<string, PackageRule> = Object.fromEntries(
+export type PackageId = "compartido" | "todo-incluido" | "privado" | "familiar" | "pedida" | "celebracion";
+
+export const packageRules = Object.fromEntries(
   packagesData.map((p) => [
     p.id,
     { name: p.name, unitPrice: p.unitPrice, min: p.minPassengers, max: p.maxPassengers, fixed: p.fixedPrice },
   ]),
-);
+) as Record<PackageId, PackageRule>;
 
-export type PackageId = string;
-const packageIds = packagesData.map((p) => p.id) as [string, ...string[]];
+const packageIds = packagesData.map((p) => p.id) as [PackageId, ...PackageId[]];
 
 export const checkoutSchema = z.object({
   packageId: z.enum(packageIds),

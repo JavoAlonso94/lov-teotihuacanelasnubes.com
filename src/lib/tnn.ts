@@ -40,7 +40,7 @@ export const flights: Flight[] = packagesData.map((p) => ({
   price: `${mxn.format(p.unitPrice)} MXN`.replace("MX$", "$"),
   note: p.note,
   icon: p.icon,
-  badge: "badge" in p ? (p as { badge?: string }).badge : undefined,
+  ...("badge" in p && p.badge ? { badge: p.badge } : {}),
 }));
 
 export const includes = [
