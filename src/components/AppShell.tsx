@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-import logo from "@/assets/logo-tnn.png.asset.json";
+const logo = { url: "/images/logo-tnn.png" };
 import { WHATSAPP_PRIMARY, WHATSAPP_SECONDARY, waLink } from "@/lib/tnn";
 
 const NAV = [
