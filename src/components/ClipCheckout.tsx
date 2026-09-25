@@ -27,6 +27,18 @@ export function ClipCheckout() {
   const [sdkReady, setSdkReady] = useState(false);
   const [processing, setProcessing] = useState(false);
   const card = useRef<ClipCard | null>(null);
+  const sessionId = useRef<string>("");
+
+  useEffect(() => {
+    // Huella del dispositivo para el antifraude de Clip
+    sessionId.current = crypto.randomUUID();
+    const risk = document.createElement("script");
+    risk.id = "cybersource";
+    risk.src = `https://tools.clip.mx/transparent/risk?session_id=${sessionId.current}`;
+    risk.async = true;
+    document.head.appendChild(risk);
+    return () => { risk.remove(); };
+  }, []);
   const pay = useServerFn(processClipPayment);
   const rule = packageRules[packageId];
   const total = useMemo(() => calculateTotal(packageId, passengers), [packageId, passengers]);
@@ -73,6 +85,8 @@ export function ClipCheckout() {
         customerName: String(data.get("customerName") ?? ""),
         customerEmail: String(data.get("customerEmail") ?? ""),
         customerPhone: String(data.get("customerPhone") ?? ""),
+        postalCode: String(data.get("postalCode") ?? ""),
+        sessionId: sessionId.current,
         acceptedTerms: true,
         cardToken: token.id,
         idempotencyKey: crypto.randomUUID(),
@@ -115,6 +129,7 @@ export function ClipCheckout() {
           <div className="col-12"><label className="form-label" htmlFor="customerName">Nombre completo</label><input className="form-control" id="customerName" name="customerName" minLength={2} maxLength={100} autoComplete="name" required /></div>
           <div className="col-12 col-sm-6"><label className="form-label" htmlFor="customerEmail">Correo</label><input className="form-control" id="customerEmail" name="customerEmail" type="email" maxLength={255} autoComplete="email" required /></div>
           <div className="col-12 col-sm-6"><label className="form-label" htmlFor="customerPhone">Teléfono</label><input className="form-control" id="customerPhone" name="customerPhone" type="tel" pattern="[+0-9 ]{10,18}" autoComplete="tel" required /></div>
+          <div className="col-12 col-sm-6"><label className="form-label" htmlFor="postalCode">Código postal de facturación</label><input className="form-control" id="postalCode" name="postalCode" inputMode="numeric" pattern="[0-9]{5}" maxLength={5} autoComplete="postal-code" required /></div>
         </div>
       </div>
       <aside className="tnn-checkout__summary">
