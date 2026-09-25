@@ -1,67 +1,49 @@
-import heroVideo from "@/assets/hero-tnn.mp4.asset.json";
-import logo from "@/assets/logo-tnn.png.asset.json";
-import launchVideo from "@/assets/despegue.mp4.asset.json";
-import sunriseVideo from "@/assets/amanecer.mp4.asset.json";
-import realFlight1 from "@/assets/vuelo-real-1.jpg.asset.json";
-import realFlight2 from "@/assets/vuelo-real-2.jpg.asset.json";
-import realFlight3 from "@/assets/vuelo-real-3.jpg.asset.json";
-import realFlight4 from "@/assets/vuelo-real-4.jpg.asset.json";
-import realFlight5 from "@/assets/vuelo-real-5.jpg.asset.json";
-import realFlight6 from "@/assets/vuelo-real-6.jpg.asset.json";
-import realFlight7 from "@/assets/vuelo-real-7.jpg.asset.json";
-import realFlight8 from "@/assets/vuelo-real-8.jpg.asset.json";
-import galleryReal1 from "@/assets/galeria-real-1.jpg.asset.json";
-import galleryReal2 from "@/assets/galeria-real-2.jpg.asset.json";
-import galleryReal3 from "@/assets/galeria-real-3.jpg.asset.json";
-import galleryReal4 from "@/assets/galeria-real-4.jpg.asset.json";
-import galleryReal5 from "@/assets/galeria-real-5.jpg.asset.json";
-import galleryReal6 from "@/assets/galeria-real-6.jpg.asset.json";
-import galleryReal7 from "@/assets/galeria-real-7.jpg.asset.json";
+const img = (name: string) => `/images/${name}`;
 
 export const media = {
-  heroVideo: heroVideo.url,
-  logo: logo.url,
-  shared: realFlight5.url,
-  private: realFlight1.url,
-  pano: realFlight3.url,
-  family: realFlight4.url,
-  proposal: realFlight8.url,
-  celebration: realFlight7.url,
-  crew: realFlight6.url,
-  launchVideo: launchVideo.url,
-  sunriseVideo: sunriseVideo.url,
-  toastClose: realFlight1.url,
-  toastBasket: realFlight2.url,
-  toastFlight: realFlight3.url,
-  toastPour: realFlight4.url,
-  toastGround: realFlight5.url,
-  toastFamily: realFlight6.url,
-  toastTravelers: realFlight7.url,
+  heroVideo: img("hero-tnn.mp4"),
+  logo: img("logo-tnn.png"),
+  shared: img("vuelo-real-5.jpg"),
+  private: img("vuelo-real-1.jpg"),
+  pano: img("vuelo-real-3.jpg"),
+  family: img("vuelo-real-4.jpg"),
+  proposal: img("vuelo-real-8.jpg"),
+  celebration: img("vuelo-real-7.jpg"),
+  crew: img("vuelo-real-6.jpg"),
+  launchVideo: img("despegue.mp4"),
+  sunriseVideo: img("amanecer.mp4"),
+  toastClose: img("vuelo-real-1.jpg"),
+  toastBasket: img("vuelo-real-2.jpg"),
+  toastFlight: img("vuelo-real-3.jpg"),
+  toastPour: img("vuelo-real-4.jpg"),
+  toastGround: img("vuelo-real-5.jpg"),
+  toastFamily: img("vuelo-real-6.jpg"),
+  toastTravelers: img("vuelo-real-7.jpg"),
 };
 
 export const flightImages: Record<string, string> = {
-  compartido: realFlight5.url,
-  "todo-incluido": realFlight6.url,
-  privado: realFlight1.url,
-  familiar: realFlight4.url,
-  pedida: realFlight8.url,
-  celebracion: realFlight7.url,
+  compartido: img("vuelo-real-5.jpg"),
+  "todo-incluido": img("vuelo-real-6.jpg"),
+  privado: img("vuelo-real-1.jpg"),
+  familiar: img("vuelo-real-4.jpg"),
+  pedida: img("vuelo-real-8.jpg"),
+  celebracion: img("vuelo-real-7.jpg"),
 };
 
 export const galleryImages = [
-  { src: realFlight3.url, alt: "Pareja saludando desde un globo aerostático en Teotihuacán" },
-  { src: realFlight1.url, alt: "Pareja disfrutando su experiencia dentro de la canastilla" },
-  { src: realFlight5.url, alt: "Grupo de viajeros volando en globo aerostático" },
-  { src: realFlight6.url, alt: "Viajeros celebrando durante un vuelo en globo" },
-  { src: realFlight8.url, alt: "Pareja celebrando frente a un globo aerostático" },
-  { src: realFlight2.url, alt: "Pareja antes de despegar en Teotihuacán" },
-  { src: realFlight4.url, alt: "Viajeros junto a globos de colores al amanecer" },
-  { src: realFlight7.url, alt: "Pareja después de su experiencia de vuelo" },
-  { src: galleryReal1.url, alt: "Familia celebrando frente a los globos aerostáticos" },
-  { src: galleryReal2.url, alt: "Grupo de amigos después de volar sobre Teotihuacán" },
-  { src: galleryReal3.url, alt: "Familia saludando desde la canastilla del globo" },
-  { src: galleryReal4.url, alt: "Familia reunida frente a un globo de colores" },
-  { src: galleryReal5.url, alt: "Viajeros saludando durante su vuelo en globo" },
-  { src: galleryReal6.url, alt: "Grupo de amigos divirtiéndose junto al globo" },
-  { src: galleryReal7.url, alt: "Familia disfrutando su experiencia entre globos" },
+  { src: img("vuelo-real-3.jpg"), alt: "Pareja saludando desde un globo aerostático en Teotihuacán" },
+  { src: img("vuelo-real-1.jpg"), alt: "Pareja disfrutando su experiencia dentro de la canastilla" },
+  { src: img("vuelo-real-5.jpg"), alt: "Grupo de viajeros volando en globo aerostático" },
+  { src: img("vuelo-real-6.jpg"), alt: "Viajeros celebrando durante un vuelo en globo" },
+  { src: img("vuelo-real-8.jpg"), alt: "Pareja celebrando frente a un globo aerostático" },
+  { src: img("vuelo-real-2.jpg"), alt: "Pareja antes de despegar en Teotihuacán" },
+  { src: img("vuelo-real-4.jpg"), alt: "Viajeros junto a globos de colores al amanecer" },
+  { src: img("vuelo-real-7.jpg"), alt: "Pareja después de su experiencia de vuelo" },
+  { src: img("galeria-real-1.jpg"), alt: "Familia celebrando frente a los globos aerostáticos" },
+  { src: img("galeria-real-2.jpg"), alt: "Grupo de amigos después de volar sobre Teotihuacán" },
+  { src: img("galeria-real-3.jpg"), alt: "Familia saludando desde la canastilla del globo" },
+  { src: img("galeria-real-4.jpg"), alt: "Familia reunida frente a un globo de colores" },
+  { src: img("galeria-real-5.jpg"), alt: "Viajeros saludando durante su vuelo en globo" },
+  { src: img("galeria-real-6.jpg"), alt: "Grupo de amigos divirtiéndose junto al globo" },
+  { src: img("galeria-real-7.jpg"), alt: "Familia disfrutando su experiencia entre globos" },
 ];
