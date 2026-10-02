@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 const logo = { url: "/images/logo-tnn.webp" };
-import { WHATSAPP_PRIMARY, WHATSAPP_SECONDARY, waLink } from "@/lib/tnn";
+import { WHATSAPP_PRIMARY, WHATSAPP_SECONDARY, SOCIAL_LINKS, waLink } from "@/lib/tnn";
 
 const NAV = [
   { to: "/", label: "Inicio", icon: "fa-solid fa-house" },
@@ -211,13 +211,13 @@ export function AppShell({ children }: { children: ReactNode }) {
               </a>
               <span className="tnn-muted d-block">www.teotihuacanenlasnubes.com</span>
               <div className="d-flex gap-3 mt-3 fs-5">
-                <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+                <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer noopener" aria-label="Facebook">
                   <i className="fa-brands fa-facebook" />
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer noopener" aria-label="Instagram">
                   <i className="fa-brands fa-instagram" />
                 </a>
-                <a href="https://tiktok.com" target="_blank" rel="noreferrer" aria-label="TikTok">
+                <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noreferrer noopener" aria-label="TikTok">
                   <i className="fa-brands fa-tiktok" />
                 </a>
               </div>
@@ -231,13 +231,13 @@ export function AppShell({ children }: { children: ReactNode }) {
       </footer>
 
       <div className="tnn-social-float d-none d-lg-flex" aria-label="Redes sociales">
-        <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+        <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer noopener" aria-label="Facebook">
           <i className="fa-brands fa-facebook-f" />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+        <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer noopener" aria-label="Instagram">
           <i className="fa-brands fa-instagram" />
         </a>
-        <a href="https://tiktok.com" target="_blank" rel="noreferrer" aria-label="TikTok">
+        <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noreferrer noopener" aria-label="TikTok">
           <i className="fa-brands fa-tiktok" />
         </a>
       </div>
