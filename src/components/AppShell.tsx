@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 const logo = { url: "/images/logo-tnn.webp" };
-import { WHATSAPP_PRIMARY, WHATSAPP_SECONDARY, waLink } from "@/lib/tnn";
+import { WHATSAPP_PRIMARY, WHATSAPP_SECONDARY, SOCIAL_LINKS, waLink } from "@/lib/tnn";
 
 const NAV = [
   { to: "/", label: "Inicio", icon: "fa-solid fa-house" },
