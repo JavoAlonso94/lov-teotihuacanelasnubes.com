@@ -878,3 +878,12 @@ h5,
   font-family: "Fredoka", sans-serif;
   color: var(--tnn-ink);
 }
+
+/* Rendimiento: iconos sin bloquear texto y animaciones solo con transform/opacity */
+@font-face { font-family: "Font Awesome 6 Free"; font-style: normal; font-weight: 900; font-display: swap; src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-solid-900.woff2") format("woff2"); }
+@font-face { font-family: "Font Awesome 6 Brands"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-brands-400.woff2") format("woff2"); }
+.tnn-hero video { content-visibility: auto; }
+img { height: auto; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

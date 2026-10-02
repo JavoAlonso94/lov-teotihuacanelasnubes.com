@@ -39,6 +39,20 @@ export function AppShell({ children }: { children: ReactNode }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
+    // CSS no crítico de animaciones: se carga después del primer pintado
+    [
+      "https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css",
+    ].forEach((href) => {
+      if (document.querySelector(`link[href="${href}"]`)) return;
+      const l = document.createElement("link");
+      l.rel = "stylesheet";
+      l.href = href;
+      document.head.appendChild(l);
+    });
+  }, []);
+
+  useEffect(() => {
     const timer = window.setTimeout(() => setLoading(false), 1150);
     return () => window.clearTimeout(timer);
   }, []);

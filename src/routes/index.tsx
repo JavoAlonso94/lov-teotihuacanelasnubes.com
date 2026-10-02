@@ -37,6 +37,9 @@ function Index() {
             src={media.logo}
             alt="Teotihuacán en las nubes"
             className="tnn-hero-logo tnn-balloon-float mb-3"
+            width={320}
+            height={414}
+            fetchPriority="high"
           />
           <p className="tnn-eyebrow text-white-50">Teotihuacán en las nubes.</p>
           <h1 className="animate__animated animate__fadeInUp">
