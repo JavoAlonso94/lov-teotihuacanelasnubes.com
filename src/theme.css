@@ -886,4 +886,4 @@ img { height: auto; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
-.navbar-brand img, .tnn-preloader img { width: auto; }
+.tnn-nav .navbar-brand img, .tnn-offcanvas__header .navbar-brand img, .tnn-preloader img { width: auto; max-width: none; }
