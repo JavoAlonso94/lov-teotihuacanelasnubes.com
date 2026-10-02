@@ -211,13 +211,13 @@ export function AppShell({ children }: { children: ReactNode }) {
               </a>
               <span className="tnn-muted d-block">www.teotihuacanenlasnubes.com</span>
               <div className="d-flex gap-3 mt-3 fs-5">
-                <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+                <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer noopener" aria-label="Facebook">
                   <i className="fa-brands fa-facebook" />
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer noopener" aria-label="Instagram">
                   <i className="fa-brands fa-instagram" />
                 </a>
-                <a href="https://tiktok.com" target="_blank" rel="noreferrer" aria-label="TikTok">
+                <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noreferrer noopener" aria-label="TikTok">
                   <i className="fa-brands fa-tiktok" />
                 </a>
               </div>
