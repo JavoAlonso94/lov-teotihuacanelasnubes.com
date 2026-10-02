@@ -29,7 +29,7 @@ function Index() {
     <>
       {/* HERO */}
       <header className="tnn-hero">
-        <video autoPlay muted loop playsInline poster={media.pano}>
+        <video autoPlay muted loop playsInline poster="/images/hero-poster.webp" preload="auto">
           <source src={media.heroVideo} type="video/mp4" />
         </video>
         <div className="container tnn-app tnn-hero-inner text-center d-flex flex-column align-items-center">

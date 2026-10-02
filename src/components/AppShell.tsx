@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-const logo = { url: "/images/logo-tnn.png" };
+const logo = { url: "/images/logo-tnn.webp" };
 import { WHATSAPP_PRIMARY, WHATSAPP_SECONDARY, waLink } from "@/lib/tnn";
 
 const NAV = [
@@ -72,13 +72,13 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <>
       <div className={`tnn-preloader ${loading ? "" : "is-hidden"}`} aria-hidden={!loading}>
-        <img src={logo.url} alt="" />
+        <img src={logo.url} alt="" width={320} height={414} />
         <div className="tnn-loader-line"><span /></div>
       </div>
       <nav className={`tnn-nav ${scrolled ? "is-scrolled" : ""}`}>
         <div className="container tnn-app d-flex align-items-center justify-content-between py-2">
           <Link to="/" className="navbar-brand d-flex min-w-0 align-items-center gap-2 m-0">
-            <img src={logo.url} alt="Teotihuacán en las nubes" />
+            <img src={logo.url} alt="Teotihuacán en las nubes" width={320} height={414} />
             <span className="tnn-brand-name">Teotihuacán en las nubes</span>
           </Link>
 
@@ -135,7 +135,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         >
           <div className="tnn-offcanvas__header d-flex justify-content-between align-items-center">
             <Link to="/" className="navbar-brand d-flex min-w-0 align-items-center gap-2 m-0" onClick={() => setMenuOpen(false)}>
-              <img src={logo.url} alt="" />
+              <img src={logo.url} alt="" width={320} height={414} />
               <span className="tnn-brand-name">Teotihuacán en las nubes</span>
             </Link>
             <button className="btn btn-outline-tnn tnn-menu-close" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">
@@ -170,7 +170,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="container tnn-app">
           <div className="row g-4">
             <div className="col-12 col-lg-4">
-              <img src={logo.url} alt="Teotihuacán en las nubes" style={{ height: 72 }} className="tnn-balloon-float" />
+              <img src={logo.url} alt="Teotihuacán en las nubes" width={56} height={72} style={{ height: 72, width: "auto" }} loading="lazy" className="tnn-balloon-float" />
               <p className="tnn-muted mt-3 mb-0">
                 Vuelos en globo aerostático sobre la Ciudad de los Dioses. Seguridad, calidez y
                 amaneceres que no se olvidan.
