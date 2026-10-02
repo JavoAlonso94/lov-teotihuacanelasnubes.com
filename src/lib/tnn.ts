@@ -4,6 +4,12 @@ import Swal from "sweetalert2";
 export const WHATSAPP_PRIMARY = "525523317774";
 export const WHATSAPP_SECONDARY = "523321796983";
 
+export const SOCIAL_LINKS = {
+  instagram: "https://www.instagram.com/teotihuacan_en_las_nubes?stkn=MWU4cnJsbTZpa3VqbQ%3D%3D&utm_source=qr",
+  facebook: "https://www.facebook.com/share/1D8SnHorh9/?mibextid=wwXIfr",
+  tiktok: "https://www.tiktok.com/@teotihuacanenlasnubes?_r=1&_t=ZS-99u0RBw6zkj",
+} as const;
+
 export const waLink = (msg: string, phone = WHATSAPP_PRIMARY) =>
   `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
