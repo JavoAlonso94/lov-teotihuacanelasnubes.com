@@ -29,7 +29,7 @@ function Index() {
     <>
       {/* HERO */}
       <header className="tnn-hero">
-        <video autoPlay muted loop playsInline poster={media.pano}>
+        <video autoPlay muted loop playsInline poster="/images/hero-poster.webp" preload="auto">
           <source src={media.heroVideo} type="video/mp4" />
         </video>
         <div className="container tnn-app tnn-hero-inner text-center d-flex flex-column align-items-center">
@@ -37,6 +37,9 @@ function Index() {
             src={media.logo}
             alt="Teotihuacán en las nubes"
             className="tnn-hero-logo tnn-balloon-float mb-3"
+            width={320}
+            height={414}
+            fetchPriority="high"
           />
           <p className="tnn-eyebrow text-white-50">Teotihuacán en las nubes.</p>
           <h1 className="animate__animated animate__fadeInUp">
