@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Serve the homepage background video with a silent WebM source followed by an H.264 MP4 fallback and a matching WebP poster to support browser compatibility and fast loading.
