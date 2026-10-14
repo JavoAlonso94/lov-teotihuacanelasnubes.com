@@ -1,3 +1,4 @@
+import { ctxLang, seo, useT } from "@/lib/i18n";
 import { createFileRoute } from "@tanstack/react-router";
 import { FormEvent } from "react";
 import { media } from "@/lib/media";
@@ -5,17 +6,14 @@ import { tnnSwal, waLink, WHATSAPP_PRIMARY, WHATSAPP_SECONDARY } from "@/lib/tnn
 
 export const Route = createFileRoute("/contacto")({
   component: Contacto,
-  head: () => ({ meta: [
-    { title: "Contacto y reservaciones | Teotihuacán en las nubes" },
-    { name: "description", content: "Consulta disponibilidad y reserva tu vuelo en globo sobre Teotihuacán por WhatsApp." },
-    { property: "og:title", content: "Reserva tu vuelo | Teotihuacán en las nubes" },
-    { property: "og:description", content: "Nuestros asesores te ayudarán a elegir la experiencia ideal." },
-    { property: "og:type", content: "website" },
-    { name: "twitter:card", content: "summary_large_image" },
-  ]}),
+  head: ({ match }) => seo(ctxLang(match), "/contacto", {
+    es: { title: "Contacto | Reserva tu vuelo en globo en Teotihuacán", description: "Contáctanos por WhatsApp para reservar tu vuelo en globo en Teotihuacán y resolver tus dudas." },
+    en: { title: "Contact | Book Your Teotihuacan Balloon Ride", description: "Contact us on WhatsApp to book your hot air balloon ride in Teotihuacan and get your questions answered." },
+  }),
 });
 
 function Contacto() {
+  const t = useT();
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -28,7 +26,7 @@ function Contacto() {
   return <>
     <section className="tnn-section pb-0">
       <div className="container tnn-app text-center" data-aos="fade-up">
-        <p className="tnn-eyebrow">Ponte en contacto</p><h1 className="display-5">Tu aventura comienza aquí</h1>
+        <p className="tnn-eyebrow">{t("Ponte en contacto", "Get in touch")}</p><h1 className="display-5">{t("Tu aventura comienza aquí", "Your adventure starts here")}</h1>
         <p className="tnn-muted">Nuestros asesores resolverán tus dudas y te ayudarán a elegir la mejor opción.</p>
       </div>
     </section>

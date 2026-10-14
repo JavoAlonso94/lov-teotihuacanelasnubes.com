@@ -1,16 +1,37 @@
+import { useLang, useSetLang, useT } from "@/lib/i18n";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 const logo = { url: "/images/logo-tnn.webp" };
 import { WHATSAPP_PRIMARY, WHATSAPP_SECONDARY, SOCIAL_LINKS, waLink } from "@/lib/tnn";
 
-const NAV = [
-  { to: "/", label: "Inicio", icon: "fa-solid fa-house" },
-  { to: "/vuelos", label: "Vuelos", icon: "fa-solid fa-fire-flame-curved" },
-  { to: "/nosotros", label: "Nosotros", icon: "fa-solid fa-people-group" },
-  { to: "/galeria", label: "Galería", icon: "fa-solid fa-images" },
-  { to: "/contacto", label: "Contacto", icon: "fa-solid fa-comment-dots" },
-  { to: "/checkout", label: "Comprar", icon: "fa-solid fa-basket-shopping" },
+const NAV_ITEMS = [
+  { to: "/", es: "Inicio", en: "Home", icon: "fa-solid fa-house" },
+  { to: "/vuelos", es: "Vuelos", en: "Flights", icon: "fa-solid fa-fire-flame-curved" },
+  { to: "/nosotros", es: "Nosotros", en: "About", icon: "fa-solid fa-people-group" },
+  { to: "/galeria", es: "Galería", en: "Gallery", icon: "fa-solid fa-images" },
+  { to: "/contacto", es: "Contacto", en: "Contact", icon: "fa-solid fa-comment-dots" },
+  { to: "/checkout", es: "Comprar", en: "Book", icon: "fa-solid fa-basket-shopping" },
 ] as const;
+
+function LangSwitch({ className = "" }: { className?: string }) {
+  const lang = useLang();
+  const setLang = useSetLang();
+  return (
+    <div className={`tnn-lang ${className}`} role="group" aria-label="Idioma / Language">
+      {(["es", "en"] as const).map((l) => (
+        <button
+          key={l}
+          type="button"
+          className={lang === l ? "active" : ""}
+          aria-pressed={lang === l}
+          onClick={() => setLang(l)}
+        >
+          {l.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -37,6 +58,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const path = useRouterState({ select: (s) => s.location.pathname });
+  const lang = useLang();
+  const t = useT();
+  const NAV = NAV_ITEMS.map((n) => ({ ...n, label: lang === "en" ? n.en : n.es }));
 
   useEffect(() => {
     // CSS no crítico de animaciones: se carga después del primer pintado
@@ -109,28 +133,29 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
 
           <div className="d-flex align-items-center gap-2">
+            <LangSwitch />
             <button
               className="tnn-switch btn p-0"
               onClick={toggle}
-              aria-label={theme === "dark" ? "Activar modo día" : "Activar modo noche"}
+              aria-label={theme === "dark" ? t("Activar modo día", "Switch to day mode") : t("Activar modo noche", "Switch to night mode")}
             >
               <span className="knob">
                 <i className={theme === "dark" ? "fa-solid fa-moon" : "fa-solid fa-sun"} />
               </span>
             </button>
             <a
-              href={waLink("¡Hola! Quiero información de un vuelo en globo.")}
+              href={waLink(t("¡Hola! Quiero información de un vuelo en globo.", "Hi! I would like information about a balloon flight."))}
               target="_blank"
               rel="noreferrer"
               className="btn btn-tnn d-none d-lg-inline-flex btn-sm"
             >
               <i className="fa-brands fa-whatsapp me-2" />
-              Reservar
+              {t("Reservar", "Book")}
             </a>
             <button
               className="btn btn-outline-tnn d-lg-none px-3 py-2"
               onClick={() => setMenuOpen(true)}
-              aria-label="Abrir menú"
+              aria-label={t("Abrir menú", "Open menu")}
             >
               <i className="fa-solid fa-bars" />
             </button>
@@ -152,12 +177,12 @@ export function AppShell({ children }: { children: ReactNode }) {
               <img src={logo.url} alt="" width={320} height={414} />
               <span className="tnn-brand-name">Teotihuacán en las nubes</span>
             </Link>
-            <button className="btn btn-outline-tnn tnn-menu-close" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">
+            <button className="btn btn-outline-tnn tnn-menu-close" onClick={() => setMenuOpen(false)} aria-label={t("Cerrar menú", "Close menu")}>
               <i className="fa-solid fa-xmark" />
             </button>
           </div>
           <div className="tnn-offcanvas__content">
-            <span className="tnn-eyebrow">Explora</span>
+            <div className="d-flex justify-content-between align-items-center"><span className="tnn-eyebrow">{t("Explora", "Explore")}</span><LangSwitch /></div>
             <div className="tnn-offcanvas__links">
               {NAV.map((n) => (
                 <Link
@@ -172,7 +197,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               ))}
             </div>
             <Link to="/checkout" className="btn btn-tnn w-100 mt-4" onClick={() => setMenuOpen(false)}>
-              <i className="fa-solid fa-lock me-2" />Comprar vuelo
+              <i className="fa-solid fa-lock me-2" />{t("Comprar vuelo", "Book your flight")}
             </Link>
           </div>
         </aside>
@@ -186,23 +211,25 @@ export function AppShell({ children }: { children: ReactNode }) {
             <div className="col-12 col-lg-4">
               <img src={logo.url} alt="Teotihuacán en las nubes" width={56} height={72} style={{ height: 72, width: "auto" }} loading="lazy" className="tnn-balloon-float" />
               <p className="tnn-muted mt-3 mb-0">
-                Vuelos en globo aerostático sobre la Ciudad de los Dioses. Seguridad, calidez y
-                amaneceres que no se olvidan.
+                {t(
+                  "Vuelos en globo aerostático sobre la Ciudad de los Dioses. Seguridad, calidez y amaneceres que no se olvidan.",
+                  "Hot air balloon flights over the City of the Gods. Safety, warmth and sunrises you will never forget.",
+                )}
               </p>
             </div>
             <div className="col-6 col-lg-3">
-              <h5 className="mb-3">Explora</h5>
+              <h5 className="mb-3">{t("Explora", "Explore")}</h5>
               {NAV.map((n) => (
                 <Link key={n.to} to={n.to} className="d-block mb-2 text-decoration-none tnn-muted">
                   {n.label}
                 </Link>
               ))}
               <Link to="/terminos" className="d-block mb-2 text-decoration-none tnn-muted">
-                Términos y condiciones
+                {t("Términos y condiciones", "Terms and conditions")}
               </Link>
             </div>
             <div className="col-6 col-lg-5">
-              <h5 className="mb-3">Contacto</h5>
+              <h5 className="mb-3">{t("Contacto", "Contact")}</h5>
               <a className="d-block mb-2 text-decoration-none" href={`https://wa.me/${WHATSAPP_PRIMARY}`}>
                 <i className="fa-brands fa-whatsapp me-2" />+52 55 2331 7774
               </a>
@@ -225,7 +252,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
           <hr style={{ borderColor: "var(--tnn-line)" }} />
           <p className="tnn-muted small mb-0 text-center">
-            © {new Date().getFullYear()} Teotihuacán en las nubes. Todos los derechos reservados.
+            © {new Date().getFullYear()} Teotihuacán en las nubes. {t("Todos los derechos reservados.", "All rights reserved.")}
           </p>
         </div>
       </footer>

@@ -11,3 +11,4 @@
 
 - Serve the homepage background video with a silent WebM source followed by an H.264 MP4 fallback and a matching WebP poster to support browser compatibility and fast loading.
 - Gallery videos use WebM with MP4 fallback, individual WebP posters, and preload="none" so video downloads begin only when visitors play them.
+- i18n: Spanish/English via `src/lib/i18n.tsx` (`useT()` inline pairs, `seo()` for per-route head with hreflang); language is decided server-side in root `beforeLoad` (?lang > cookie > bots=es > country > Accept-Language) so SSR HTML is already translated. Prices always MXN.

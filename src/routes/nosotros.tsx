@@ -1,35 +1,24 @@
+import { ctxLang, seo, useT } from "@/lib/i18n";
 import { createFileRoute } from "@tanstack/react-router";
 import { media } from "@/lib/media";
 
 export const Route = createFileRoute("/nosotros")({
   component: Nosotros,
-  head: () => ({
-    meta: [
-      { title: "Nosotros | Teotihuacán en las nubes" },
-      {
-        name: "description",
-        content:
-          "Somos una agencia de vuelos en globo aerostático en Teotihuacán comprometida con la calidad, la calidez humana y tu seguridad.",
-      },
-      { property: "og:title", content: "Conoce Teotihuacán en las nubes" },
-      {
-        property: "og:description",
-        content: "Calidad, calidez humana y experiencias 100% seguras en globo aerostático.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+  head: ({ match }) => seo(ctxLang(match), "/nosotros", {
+    es: { title: "Nosotros | Vuelos en globo seguros en Teotihuacán", description: "Agencia de vuelos en globo aerostático en Teotihuacán con pilotos certificados AFAC, calidad y calidez humana." },
+    en: { title: "About Us | Safe Hot Air Balloon Flights in Teotihuacan", description: "Hot air balloon agency in Teotihuacan with AFAC-certified pilots, quality service and a human touch." },
   }),
 });
 
 function Nosotros() {
+  const t = useT();
   return (
     <>
       <section className="tnn-section pb-0">
         <div className="container tnn-app text-center" data-aos="fade-up">
-          <p className="tnn-eyebrow">Ahora conócenos</p>
+          <p className="tnn-eyebrow">{t("Ahora conócenos", "Get to know us")}</p>
           <h1 className="display-5">
-            Vuela en <span className="tnn-grad-text">globo aerostático</span> con tu mejor compañía
+            {t("Vuela en", "Fly in a")} <span className="tnn-grad-text">{t("globo aerostático", "hot air balloon")}</span> {t("con tu mejor compañía", "with your favorite people")}
           </h1>
         </div>
       </section>
@@ -40,7 +29,7 @@ function Nosotros() {
             {[media.toastBasket, media.toastFlight, media.toastGround].map((src, i) => (
               <div className="col-12 col-md-4" key={src} data-aos="flip-up" data-aos-delay={i * 120}>
                 <figure className="tnn-gallery-frame tnn-gallery-frame--story">
-                  <img src={src} alt="Carrete fotográfico de vuelos en globo" loading="lazy" />
+                  <img src={src} alt={t("Carrete fotográfico de vuelos en globo", "Balloon flight photo reel")} loading="lazy" />
                 </figure>
               </div>
             ))}
@@ -50,13 +39,9 @@ function Nosotros() {
             <div className="col-12 col-lg-6" data-aos="fade-right">
               <h2 className="display-6">Teotihuacán en las nubes</h2>
               <p className="tnn-muted">
-                Somos una agencia empeñada en ofrecerte una experiencia de altura. Nos motiva
-                ofrecer a nuestros clientes un servicio de <b>calidad y calidez humana</b>. Nos
-                esforzamos para que vivas una experiencia <b>100% segura</b> y digna de compartir
-                con todos tus amigos y familiares. Nuestro principal objetivo es llevar a más
-                personas a visitar el cielo y las nubes en Teotihuacán.
+                {t("Somos una agencia empeñada en ofrecerte una experiencia de altura. Nos motiva ofrecer a nuestros clientes un servicio de calidad y calidez humana. Nos esforzamos para que vivas una experiencia 100% segura y digna de compartir con todos tus amigos y familiares. Nuestro principal objetivo es llevar a más personas a visitar el cielo y las nubes en Teotihuacán.", "We are an agency committed to giving you an experience that reaches new heights. We are driven by offering our clients quality service with a human touch. We work hard so you enjoy a 100% safe experience worth sharing with all your friends and family. Our main goal is to take more people to visit the sky and clouds over Teotihuacan.")}
               </p>
-              <p className="fw-bold tnn-grad-text fs-5">¡Seguro volarás seguro con nosotros!</p>
+              <p className="fw-bold tnn-grad-text fs-5">{t("¡Seguro volarás seguro con nosotros!", "You will fly safely with us!")}</p>
             </div>
             <div className="col-12 col-lg-6">
               <div className="row g-3">
@@ -66,10 +51,9 @@ function Nosotros() {
                       <i className="fa-solid fa-bullseye" />
                     </span>
                     <div>
-                      <h3 className="h6">Misión</h3>
+                      <h3 className="h6">{t("Misión", "Mission")}</h3>
                       <p className="small tnn-muted mb-0">
-                        Cumplir con las expectativas de nuestros clientes y ofrecer un servicio de
-                        calidad asegurada.
+                        {t("Cumplir con las expectativas de nuestros clientes y ofrecer un servicio de calidad asegurada.", "To meet our clients' expectations and offer guaranteed quality service.")}
                       </p>
                     </div>
                   </div>
@@ -80,10 +64,9 @@ function Nosotros() {
                       <i className="fa-solid fa-eye" />
                     </span>
                     <div>
-                      <h3 className="h6">Visión</h3>
+                      <h3 className="h6">{t("Visión", "Vision")}</h3>
                       <p className="small tnn-muted mb-0">
-                        Ser una agencia reconocida a nivel mundial gracias a nuestro servicio de
-                        calidad.
+                        {t("Ser una agencia reconocida a nivel mundial gracias a nuestro servicio de calidad.", "To be a globally recognized agency thanks to our quality service.")}
                       </p>
                     </div>
                   </div>
@@ -94,10 +77,9 @@ function Nosotros() {
                       <i className="fa-solid fa-handshake-angle" />
                     </span>
                     <div>
-                      <h3 className="h6">Nuestro compromiso es contigo</h3>
+                      <h3 className="h6">{t("Nuestro compromiso es contigo", "Our commitment is to you")}</h3>
                       <p className="small tnn-muted mb-0">
-                        No saturamos el espacio de la canastilla: podrás admirar la grandeza de
-                        Teotihuacán placenteramente y con total comodidad.
+                        {t("No saturamos el espacio de la canastilla: podrás admirar la grandeza de Teotihuacán placenteramente y con total comodidad.", "We never overcrowd the basket: you can admire the grandeur of Teotihuacan comfortably and at ease.")}
                       </p>
                     </div>
                   </div>

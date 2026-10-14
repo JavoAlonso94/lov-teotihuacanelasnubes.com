@@ -1,16 +1,11 @@
+import { ctxLang, seo, useT } from "@/lib/i18n";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/terminos")({
   component: Terminos,
-  head: () => ({
-    meta: [
-      { title: "Términos y condiciones | Teotihuacán en las nubes" },
-      { name: "description", content: "Condiciones de reservación, seguridad, cambios y cancelaciones para vuelos en globo." },
-      { property: "og:title", content: "Términos y condiciones | Teotihuacán en las nubes" },
-      { property: "og:description", content: "Información importante para reservar tu experiencia de vuelo." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+  head: ({ match }) => seo(ctxLang(match), "/terminos", {
+    es: { title: "Términos y condiciones | Teotihuacán en las nubes", description: "Condiciones de reservación, pago, cancelación y seguridad de los vuelos en globo de Teotihuacán en las nubes." },
+    en: { title: "Terms and Conditions | Teotihuacán en las nubes", description: "Booking, payment, cancellation and safety conditions for Teotihuacán en las nubes balloon flights." },
   }),
 });
 
@@ -24,11 +19,12 @@ const terms = [
 ];
 
 function Terminos() {
+  const t = useT();
   return <section className="tnn-section">
     <div className="container tnn-app" style={{ maxWidth: 860 }}>
       <div className="text-center mb-5" data-aos="fade-up">
-        <p className="tnn-eyebrow">Información importante</p>
-        <h1 className="display-5">Términos y condiciones</h1>
+        <p className="tnn-eyebrow">{t("Información importante", "Important information")}</p>
+        <h1 className="display-5">{t("Términos y condiciones", "Terms and conditions")}</h1>
         <p className="tnn-muted">Lee esta información antes de reservar tu experiencia.</p>
       </div>
       <div className="accordion" id="termsAccordion">

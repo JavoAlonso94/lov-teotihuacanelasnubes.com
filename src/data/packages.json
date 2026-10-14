@@ -10,7 +10,14 @@
     "badge": "Más popular",
     "minPassengers": 1,
     "maxPassengers": 12,
-    "fixedPrice": false
+    "fixedPrice": false,
+    "en": {
+      "name": "Shared Flight",
+      "tagline": "Our most popular flight among travelers.",
+      "description": "Discover the Teotihuacan valley from above, sharing the basket with fellow travelers. Make friends in the clouds and fly safely with us.",
+      "note": "per person",
+      "badge": "Most popular"
+    }
   },
   {
     "id": "todo-incluido",
@@ -22,7 +29,13 @@
     "icon": "fa-solid fa-van-shuttle",
     "minPassengers": 1,
     "maxPassengers": 12,
-    "fixedPrice": false
+    "fixedPrice": false,
+    "en": {
+      "name": "All-Inclusive Flight",
+      "tagline": "We take care of everything.",
+      "description": "Includes round-trip shared transportation from Mexico City and entrance to the archaeological site. Relax and enjoy an unforgettable sunrise in the clouds.",
+      "note": "per person"
+    }
   },
   {
     "id": "privado",
@@ -34,7 +47,13 @@
     "icon": "fa-solid fa-heart",
     "minPassengers": 2,
     "maxPassengers": 2,
-    "fixedPrice": true
+    "fixedPrice": true,
+    "en": {
+      "name": "Private Flight",
+      "tagline": "Our special flight for couples.",
+      "description": "A unique balloon ride admiring Teotihuacan with a 360° view of the whole valley, in a basket reserved just for you.",
+      "note": "per couple"
+    }
   },
   {
     "id": "familiar",
@@ -46,7 +65,13 @@
     "icon": "fa-solid fa-people-roof",
     "minPassengers": 4,
     "maxPassengers": 12,
-    "fixedPrice": false
+    "fixedPrice": false,
+    "en": {
+      "name": "Private Family Flight",
+      "tagline": "Spend a dreamy sunrise over Teotihuacan.",
+      "description": "Gather your family, friends or coworkers and fly in a balloon exclusively for your group (4 people minimum).",
+      "note": "per person"
+    }
   },
   {
     "id": "pedida",
@@ -58,7 +83,13 @@
     "icon": "fa-solid fa-ring",
     "minPassengers": 2,
     "maxPassengers": 2,
-    "fixedPrice": true
+    "fixedPrice": true,
+    "en": {
+      "name": "Marriage Proposal Flight",
+      "tagline": "Ready to take the next step?",
+      "description": "Fly together over the sky of the gods on an exclusive flight. Includes a bouquet of roses and a banner reading “Will you marry me?”. The answer will surely be yes!",
+      "note": "per couple"
+    }
   },
   {
     "id": "celebracion",
@@ -70,6 +101,12 @@
     "icon": "fa-solid fa-cake-candles",
     "minPassengers": 1,
     "maxPassengers": 12,
-    "fixedPrice": false
+    "fixedPrice": false,
+    "en": {
+      "name": "Celebration Flight",
+      "tagline": "Life flies by — celebrate in a balloon.",
+      "description": "Celebrate a birthday or surprise someone special. Includes a surprise cake and a “Happy Birthday” or “Happy Anniversary” banner.",
+      "note": "per person"
+    }
   }
 ]

@@ -14,6 +14,7 @@ import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as NosotrosRouteImport } from './routes/nosotros'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TerminosRouteImport } from './routes/terminos'
 import { Route as VuelosRouteImport } from './routes/vuelos'
 import { Route as ApiPublicClipWebhookRouteImport } from './routes/api/public/clip-webhook'
@@ -43,6 +44,11 @@ const NosotrosRoute = NosotrosRouteImport.update({
   path: '/nosotros',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TerminosRoute = TerminosRouteImport.update({
   id: '/terminos',
   path: '/terminos',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terminos': typeof TerminosRoute
   '/vuelos': typeof VuelosRoute
   '/api/public/clip-webhook': typeof ApiPublicClipWebhookRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terminos': typeof TerminosRoute
   '/vuelos': typeof VuelosRoute
   '/api/public/clip-webhook': typeof ApiPublicClipWebhookRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/contacto': typeof ContactoRoute
   '/galeria': typeof GaleriaRoute
   '/nosotros': typeof NosotrosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terminos': typeof TerminosRoute
   '/vuelos': typeof VuelosRoute
   '/api/public/clip-webhook': typeof ApiPublicClipWebhookRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/galeria'
     | '/nosotros'
+    | '/sitemap.xml'
     | '/terminos'
     | '/vuelos'
     | '/api/public/clip-webhook'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/galeria'
     | '/nosotros'
+    | '/sitemap.xml'
     | '/terminos'
     | '/vuelos'
     | '/api/public/clip-webhook'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/galeria'
     | '/nosotros'
+    | '/sitemap.xml'
     | '/terminos'
     | '/vuelos'
     | '/api/public/clip-webhook'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   ContactoRoute: typeof ContactoRoute
   GaleriaRoute: typeof GaleriaRoute
   NosotrosRoute: typeof NosotrosRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TerminosRoute: typeof TerminosRoute
   VuelosRoute: typeof VuelosRoute
   ApiPublicClipWebhookRoute: typeof ApiPublicClipWebhookRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NosotrosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terminos': {
       id: '/terminos'
       path: '/terminos'
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactoRoute: ContactoRoute,
   GaleriaRoute: GaleriaRoute,
   NosotrosRoute: NosotrosRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TerminosRoute: TerminosRoute,
   VuelosRoute: VuelosRoute,
   ApiPublicClipWebhookRoute: ApiPublicClipWebhookRoute,

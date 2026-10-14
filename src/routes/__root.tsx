@@ -14,6 +14,8 @@ import appCss from "../styles.css?url";
 import themeCss from "../theme.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AppShell } from "@/components/AppShell";
+import { readLangCookie, useLang, SITE_URL } from "@/lib/i18n";
+import { detectLang } from "@/lib/lang.functions";
 
 
 function NotFoundComponent() {
@@ -77,23 +79,21 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  beforeLoad: async ({ location }) => {
+    const requested = (location.search as { lang?: string }).lang;
+    if (!requested && typeof document !== "undefined") {
+      const saved = readLangCookie(document.cookie);
+      if (saved) return { lang: saved };
+    }
+    return { lang: await detectLang({ data: { requested } }) };
+  },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#29abe2" },
-      { title: "Teotihuacán en las nubes | Vuelos en globo aerostático" },
-      {
-        name: "description",
-        content:
-          "Vuela en globo aerostático sobre Teotihuacán al amanecer. Vuelos compartidos, privados y celebraciones con pilotos certificados y seguro de viajero.",
-      },
-      { property: "og:title", content: "Teotihuacán en las nubes" },
-      {
-        property: "og:description",
-        content: "Amaneceres en globo aerostático sobre la Ciudad de los Dioses.",
-      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Teotihuacán en las nubes" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -118,6 +118,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: themeCss },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": ["TravelAgency", "LocalBusiness"],
+          name: "Teotihuacán en las nubes",
+          url: SITE_URL,
+          logo: `${SITE_URL}/images/logo-tnn.webp`,
+          image: `${SITE_URL}/images/hero-poster.webp`,
+          description: "Vuelos en globo aerostático sobre las pirámides de Teotihuacán. Hot air balloon rides over Teotihuacan, Mexico.",
+          telephone: "+52 55 2331 7774",
+          priceRange: "$2,400 - $10,800 MXN",
+          currenciesAccepted: "MXN",
+          areaServed: "Teotihuacán, Estado de México",
+          address: { "@type": "PostalAddress", addressLocality: "San Juan Teotihuacán", addressRegion: "Estado de México", addressCountry: "MX" },
+          geo: { "@type": "GeoCoordinates", latitude: 19.6925, longitude: -98.8438 },
+          availableLanguage: ["es", "en"],
+          sameAs: [
+            "https://www.instagram.com/teotihuacan_en_las_nubes",
+            "https://www.facebook.com/share/1D8SnHorh9/",
+            "https://www.tiktok.com/@teotihuacanenlasnubes",
+          ],
+        }),
+      },
+    ],
   }),
 
   shellComponent: RootShell,
@@ -127,8 +153,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const lang = useLang();
   return (
-    <html lang="es-MX">
+    <html lang={lang === "en" ? "en" : "es-MX"}>
       <head>
         <HeadContent />
       </head>
