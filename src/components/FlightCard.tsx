@@ -1,12 +1,14 @@
+import { useT } from "@/lib/i18n";
 import { Link } from "@tanstack/react-router";
 import type { Flight } from "@/lib/tnn";
 
 export function FlightCard({ flight, image, delay = 0 }: { flight: Flight; image: string; delay?: number }) {
+  const t = useT();
   return (
     <div className="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay={delay}>
       <article className="tnn-card d-flex flex-column">
         <div className={`tnn-card__media tnn-card__media--${flight.id}`}>
-          <img src={image} alt={`Experiencia ${flight.name} en Teotihuacán`} loading="lazy" />
+          <img src={image} alt={t(`Experiencia ${flight.name} en Teotihuacán`, `${flight.name} experience in Teotihuacan`)} loading="lazy" />
           {flight.badge && <span className="tnn-badge">{flight.badge}</span>}
           <span className="tnn-card__image-icon" aria-hidden="true">
             <i className={flight.icon} />
@@ -19,14 +21,14 @@ export function FlightCard({ flight, image, delay = 0 }: { flight: Flight; image
               <p className="tnn-muted small mb-0">{flight.tagline}</p>
             </div>
             <div className="tnn-card__price text-end">
-              <span>Desde</span>
+              <span>{t("Desde", "From")}</span>
               <div className="tnn-price">{flight.price}</div>
               <small className="tnn-muted">{flight.note}</small>
             </div>
           </div>
           <p className="tnn-card__description">{flight.description}</p>
           <Link className="btn btn-sky w-100 mt-auto" to="/checkout" search={{ package: flight.id }}>
-            Comprar ahora
+            {t("Comprar ahora", "Book now")}
             <i className="fa-solid fa-arrow-right ms-2" aria-hidden="true" />
           </Link>
         </div>
