@@ -6,7 +6,7 @@ const BOT = /bot|crawl|spider|slurp|facebookexternalhit|whatsapp|lighthouse/i;
 
 /** Decide el idioma: ?lang= > cookie > buscadores (español) > país > idioma del navegador. */
 export const detectLang = createServerFn({ method: "GET" })
-  .inputValidator((d: { requested?: string }) => d)
+  .inputValidator((d: { requested?: string | undefined }) => d)
   .handler(async ({ data }): Promise<Lang> => {
     if (data.requested === "es" || data.requested === "en") {
       setCookie(LANG_COOKIE, data.requested, { path: "/", maxAge: 31536000, sameSite: "lax" });
