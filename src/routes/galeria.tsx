@@ -1,22 +1,13 @@
+import { ctxLang, seo, useT } from "@/lib/i18n";
 import { createFileRoute } from "@tanstack/react-router";
 import { galleryImages, media } from "@/lib/media";
 import { tnnSwal } from "@/lib/tnn";
 
 export const Route = createFileRoute("/galeria")({
   component: Galeria,
-  head: () => ({
-    meta: [
-      { title: "Galería | Teotihuacán en las nubes" },
-      {
-        name: "description",
-        content:
-          "Fotografías de nuestros vuelos en globo aerostático sobre Teotihuacán: amaneceres, parejas, familias y celebraciones.",
-      },
-      { property: "og:title", content: "Galería de vuelos en globo en Teotihuacán" },
-      { property: "og:description", content: "Mira cómo se vive un amanecer en las nubes." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+  head: ({ match }) => seo(ctxLang(match), "/galeria", {
+    es: { title: "Galería de vuelos en globo en Teotihuacán | Fotos y videos", description: "Fotos y videos reales de vuelos en globo aerostático sobre Teotihuacán: amaneceres, parejas, familias y celebraciones." },
+    en: { title: "Teotihuacan Hot Air Balloon Gallery | Photos & Videos", description: "Real photos and videos of hot air balloon flights over Teotihuacan: sunrises, couples, families and celebrations." },
   }),
 });
 
@@ -27,12 +18,13 @@ const reviews = [
 ];
 
 function Galeria() {
+  const t = useT();
   return (
     <>
       <section className="tnn-section pb-0">
         <div className="container tnn-app text-center" data-aos="fade-up">
-          <p className="tnn-eyebrow">Carrete fotográfico</p>
-          <h1 className="display-5">Galería en las nubes</h1>
+          <p className="tnn-eyebrow">{t("Carrete fotográfico", "Photo reel")}</p>
+          <h1 className="display-5">{t("Galería en las nubes", "Gallery in the clouds")}</h1>
         </div>
       </section>
 
@@ -69,7 +61,7 @@ function Galeria() {
       <section className="tnn-section" style={{ background: "var(--tnn-surface-2)" }}>
         <div className="container tnn-app">
           <div className="text-center mb-5" data-aos="fade-up">
-            <p className="tnn-eyebrow">En movimiento</p>
+            <p className="tnn-eyebrow">{t("En movimiento", "In motion")}</p>
             <h2 className="display-6">Galería de videos</h2>
           </div>
           <div className="row g-4 justify-content-center">
