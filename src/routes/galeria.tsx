@@ -74,13 +74,16 @@ function Galeria() {
           </div>
           <div className="row g-4 justify-content-center">
             {[
-              [media.launchVideo, "El despegue"],
-              [media.heroVideo, "Sobre la Ciudad de los Dioses"],
-              [media.sunriseVideo, "Amanecer entre globos"],
-            ].map(([src, label], i) => (
+              { name: "despegue", src: media.launchVideo, label: "El despegue" },
+              { name: "zona", src: "/images/zona.mp4", label: "Sobre la Ciudad de los Dioses" },
+              { name: "amanecer", src: media.sunriseVideo, label: "Amanecer entre globos" },
+            ].map(({ name, src, label }, i) => (
               <div className="col-10 col-sm-6 col-lg-4" key={label} data-aos="zoom-in" data-aos-delay={i * 100}>
                 <div className="tnn-video-card">
-                  <video className="w-100" src={src} controls muted playsInline preload="metadata" poster={galleryImages[i]?.src} />
+                  <video className="w-100" controls muted playsInline preload="none" poster={`/images/${name}-poster.webp`} aria-label={label}>
+                    <source src={`/images/${name}.webm`} type="video/webm" />
+                    <source src={src} type="video/mp4" />
+                  </video>
                   <span className="tnn-video-label"><i className="fa-solid fa-play-circle me-2" />{label}</span>
                 </div>
               </div>

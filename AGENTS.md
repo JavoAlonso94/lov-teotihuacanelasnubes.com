@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Serve the homepage background video with a silent WebM source followed by an H.264 MP4 fallback and a matching WebP poster to support browser compatibility and fast loading.
+- Gallery videos use WebM with MP4 fallback, individual WebP posters, and preload="none" so video downloads begin only when visitors play them.
